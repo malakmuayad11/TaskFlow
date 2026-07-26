@@ -20,9 +20,6 @@ type Pages = {
   "/login": {
     params: {};
   };
-  "/dashboard": {
-    params: {};
-  };
   "/tasks": {
     params: {};
   };
@@ -34,7 +31,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/sign-up" | "/login" | "/dashboard" | "/tasks" | "/settings";
+    page: "/" | "/sign-up" | "/login" | "/tasks" | "/settings";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -50,7 +47,7 @@ type RouteFiles = {
   };
   "routes/dashboard.tsx": {
     id: "routes/dashboard";
-    page: "/dashboard";
+    page: "/tasks" | "/settings";
   };
   "routes/tasks.tsx": {
     id: "routes/tasks";
