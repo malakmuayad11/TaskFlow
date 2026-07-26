@@ -1,5 +1,4 @@
 import { UserContext } from "../../context/UserContext";
-import "../../styles/index.css";
 import { useContext } from "react";
 
 export default function TasksHeader() {

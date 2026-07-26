@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import type { FormEvent } from "react";
 import { addUser } from "../../services/indexedDB/userService";
-import "../../styles/index.css";
+import { useNavigate } from "react-router";
 
 export default function SignUp() {
   const firstName = useRef<HTMLInputElement | null>(null);
@@ -10,6 +10,7 @@ export default function SignUp() {
   const password = useRef<HTMLInputElement | null>(null);
   const confirmPassword = useRef<HTMLInputElement | null>(null);
   const profilePictureURL = useRef<HTMLInputElement | null>(null);
+  const navigator = useNavigate();
 
   async function signUp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,7 +41,7 @@ export default function SignUp() {
         password: password.current.value,
         profilePictureURL: profilePicture,
       });
-      // if added, go to the login page
+      navigator("/");
     } catch {
       email.current.className = "outline-2 outline-red-500"; // error style
     }

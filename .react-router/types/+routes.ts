@@ -14,20 +14,60 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/sign-up": {
+    params: {};
+  };
+  "/login": {
+    params: {};
+  };
+  "/dashboard": {
+    params: {};
+  };
+  "/tasks": {
+    params: {};
+  };
+  "/settings": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/";
+    page: "/" | "/sign-up" | "/login" | "/dashboard" | "/tasks" | "/settings";
   };
   "routes/home.tsx": {
     id: "routes/home";
     page: "/";
+  };
+  "routes/sign-up.tsx": {
+    id: "routes/sign-up";
+    page: "/sign-up";
+  };
+  "routes/login.tsx": {
+    id: "routes/login";
+    page: "/login";
+  };
+  "routes/dashboard.tsx": {
+    id: "routes/dashboard";
+    page: "/dashboard";
+  };
+  "routes/tasks.tsx": {
+    id: "routes/tasks";
+    page: "/tasks";
+  };
+  "routes/settings.tsx": {
+    id: "routes/settings";
+    page: "/settings";
   };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "routes/home": typeof import("./app/routes/home.tsx");
+  "routes/sign-up": typeof import("./app/routes/sign-up.tsx");
+  "routes/login": typeof import("./app/routes/login.tsx");
+  "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
+  "routes/tasks": typeof import("./app/routes/tasks.tsx");
+  "routes/settings": typeof import("./app/routes/settings.tsx");
 };

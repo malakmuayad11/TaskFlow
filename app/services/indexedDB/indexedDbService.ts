@@ -1,6 +1,6 @@
 let db: IDBDatabase | null = null;
 
-const request = indexedDB.open("TaskFlow", 1);
+const request = indexedDB.open("TaskFlow", 3);
 
 request.onupgradeneeded = () => {
   const database = request.result;

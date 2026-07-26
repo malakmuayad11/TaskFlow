@@ -1,12 +1,13 @@
+import StartPage from "~/pages/StartPage";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
+    { title: "Taskflow" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
 
 export default function Home() {
-  return <p>hi</p>;
+  return <StartPage />;
 }

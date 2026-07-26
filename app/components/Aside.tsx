@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { useNavigate, NavLink } from "react-router";
 
 export default function Aside({
   isCollapsed,
@@ -9,10 +10,11 @@ export default function Aside({
   onCollapseClick: () => void;
 }) {
   const setUser = useContext(UserContext)?.setUser;
+  const navigator = useNavigate();
 
   function logout() {
     setUser?.(null);
-    // go to the start page
+    navigator("/");
   }
 
   return (
@@ -34,34 +36,37 @@ export default function Aside({
         <nav className="m-2">
           <ul className="flex flex-col gap-2">
             <li className="text-gray-300 py-4 bg-blue-800/30 rounded-md hover:cursor-pointer md:pl-3">
-              <a href="#" className="flex items-center justify-start gap-0.5">
+              <NavLink
+                to="/dashboard"
+                className="flex items-center justify-start gap-0.5"
+              >
                 <img
                   src="src/assets/dashboard.svg"
                   alt="Dashboard icon"
                   className="w-5 h-5"
                 />
                 Dashboard
-              </a>
+              </NavLink>
             </li>
             <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <a className="flex justify-start gap-1">
+              <NavLink to="/tasks" className="flex justify-start gap-1">
                 <img
                   src="src/assets/user.svg"
                   alt="User icon"
                   className="w-5 h-5"
                 />
                 Tasks
-              </a>
+              </NavLink>
             </li>
             <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <a href="#" className="flex justify-start gap-1.5">
+              <NavLink to="/settings" className="flex justify-start gap-1.5">
                 <img
                   src="src/assets/order.svg"
                   alt="Order icon"
                   className="w-4.5 h-4.5"
                 />
                 Settings
-              </a>
+              </NavLink>
             </li>
           </ul>
           <button className="text-white" onClick={logout}>

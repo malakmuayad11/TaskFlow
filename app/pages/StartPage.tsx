@@ -1,29 +1,23 @@
-import SignUp from "../components/auth/SignUp";
-import Login from "../components/auth/Login";
-import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export default function StartPage() {
-  const [page, setPage] = useState<string | null>(null);
-  function goToSignIn() {
-    setPage("sign-in");
+  const navigator = useNavigate();
+  function goToSignUp() {
+    navigator("sign-up");
   }
-  function goToLogin() {
-    setPage("log-in");
-  }
+
   return (
     <>
-      {page === "sign-in" ? <SignUp /> : page === "log-in" ? <Login /> : null}
-      {!page && (
+      <div>
+        <h1>TaskFlow</h1>
+        <button onClick={goToSignUp}>Sign Up</button>
         <div>
-          <h1>TaskFlow</h1>
-          <button onClick={goToSignIn}>Sign in</button>
-          <div>
-            <p>
-              Already have an account? <a onClick={goToLogin}>Login</a>
-            </p>
-          </div>
+          <p>
+            Already have an account? <Link to="login">Login</Link>
+          </p>
         </div>
-      )}
+      </div>
     </>
   );
 }

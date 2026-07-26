@@ -1,5 +1,4 @@
 import type { Task } from "../../types/Task";
-import "../../styles/index.css";
 
 export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
   const completionPercentage: number =
