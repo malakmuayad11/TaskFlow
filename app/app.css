@@ -1,24 +1,18 @@
 @import "tailwindcss";
 
+/* 1. Define base variables and design tokens */
 @theme {
   /* Brand Colors */
   --color-primary: #5850ec;
   --color-primary-hover: #4338ca;
   --color-primary-light: #eef2ff;
 
-  /* Light Theme Neutrals */
+  /* Semantic Theme Tokens (Defaults to Light Mode) */
   --color-bg-main: #f8fafc;
   --color-bg-surface: #ffffff;
   --color-border-color: #e2e8f0;
   --color-text-primary: #0f172a;
   --color-text-secondary: #64748b;
-
-  /* Dark Theme Neutrals */
-  --color-darkBg-main: #0b0f17;
-  --color-darkBg-surface: #111827;
-  --color-darkVorder-color: #1f2937;
-  --color-darkText-primary: #f9fafb;
-  --color-darkText-secondary: #9ca3af;
 
   /* Status Colors */
   --color-status-high-text: #dc2626;
@@ -30,18 +24,37 @@
   --color-status-progress-text: #2563eb;
   --color-status-progress-bg: #eff6ff;
 
-  /* Layout Radius & Fonts */
-  --font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Fonts & Radius */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --radius-card: 12px;
   --radius-btn: 8px;
   --radius-badge: 9999px;
+
+  @keyframes slide-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-slide-down: slide-down 1.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply text-text-primary;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+/* 2. Override Semantic Tokens in Dark Mode */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-main: #0b0f17;
+    --color-bg-surface: #111827;
+    --color-border-color: #1f2937;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #9ca3af;
   }
 } */
