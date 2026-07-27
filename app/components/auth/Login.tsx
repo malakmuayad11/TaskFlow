@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { hashPassword } from "../../services/HasherService";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router";
+import { createLoggedInUserCookie } from "~/services/cookiesService";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export default function Login() {
       if (user && user.password === (await hashPassword(password))) {
         setIsLoggedIn(true);
         setUser?.(user);
-        // should add logged-in user-email/id in localStorage or cookiee
+        createLoggedInUserCookie(user.userId);
         // there is an error with the login failed message
         navigator("/dashboard");
       } else {

@@ -5,7 +5,7 @@ import { getDB } from "./indexedDbService";
 export async function addUser(
   user: Omit<User, "userId">,
 ): Promise<IDBValidKey> {
-  const db = getDB();
+  const db = await getDB();
 
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -49,8 +49,8 @@ export async function addUser(
   });
 }
 
-export function getUser(email: string): Promise<User> {
-  const db = getDB();
+export async function getUser(email: string): Promise<User> {
+  const db = await getDB();
 
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -62,6 +62,35 @@ export function getUser(email: string): Promise<User> {
     const store = tx.objectStore("users");
     const index = store.index("emailIndex");
     const getRequest = index.get(email);
+
+    getRequest.onsuccess = () => {
+      const result = getRequest.result;
+
+      if (result) {
+        resolve(result as User);
+      } else {
+        reject(new Error("User not found."));
+      }
+    };
+
+    getRequest.onerror = () => {
+      reject(getRequest.error ?? new Error("Error getting the user."));
+    };
+  });
+}
+
+export async function getUserById(userId: number): Promise<User> {
+  const db = await getDB();
+
+  return new Promise((resolve, reject) => {
+    if (!db) {
+      reject(new Error("Database is not initialized."));
+      return;
+    }
+
+    const tx = db.transaction("users", "readonly");
+    const store = tx.objectStore("users");
+    const getRequest = store.get(userId);
 
     getRequest.onsuccess = () => {
       const result = getRequest.result;

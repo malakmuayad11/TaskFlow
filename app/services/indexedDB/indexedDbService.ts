@@ -1,45 +1,50 @@
 let db: IDBDatabase | null = null;
 
-const request = indexedDB.open("TaskFlow", 3);
+function openDatabase() {
+  return new Promise<IDBDatabase>((resolve, reject) => {
+    const request = indexedDB.open("TaskFlow", 4);
 
-request.onupgradeneeded = () => {
-  const database = request.result;
+    request.onupgradeneeded = () => {
+      const database = request.result;
 
-  if (!database.objectStoreNames.contains("users")) {
-    const store = database.createObjectStore("users", {
-      keyPath: "userId",
-      autoIncrement: true,
-    });
+      if (!database.objectStoreNames.contains("users")) {
+        const store = database.createObjectStore("users", {
+          keyPath: "userId",
+          autoIncrement: true,
+        });
 
-    store.createIndex("emailIndex", "email", {
-      unique: true,
-    });
-  }
+        store.createIndex("emailIndex", "email", {
+          unique: true,
+        });
+      }
 
-  if (!database.objectStoreNames.contains("tasks")) {
-    const store = database.createObjectStore("tasks", {
-      keyPath: "taskId",
-      autoIncrement: true,
-    });
+      if (!database.objectStoreNames.contains("tasks")) {
+        const store = database.createObjectStore("tasks", {
+          keyPath: "taskId",
+          autoIncrement: true,
+        });
 
-    store.createIndex("userIdIndex", "userId", {
-      unique: false,
-    });
-  }
-};
+        store.createIndex("userIdIndex", "userId", {
+          unique: true,
+        });
+      }
+    };
 
-request.onsuccess = () => {
-  db = request.result;
-};
+    request.onsuccess = () => {
+      db = request.result;
+      resolve(request.result);
+    };
 
-request.onerror = () => {
-  console.error("Database error:", request.error);
-};
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+}
 
-export function getDB(): IDBDatabase {
+export async function getDB(): Promise<IDBDatabase> {
+  await openDatabase();
   if (!db) {
     throw new Error("Database is not initialized");
   }
-
   return db;
 }

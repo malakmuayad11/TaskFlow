@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, NavLink } from "react-router";
+import { deleteCookies } from "~/services/cookiesService";
 
 export default function Aside({
   isCollapsed,
@@ -14,6 +15,7 @@ export default function Aside({
 
   function logout() {
     setUser?.(null);
+    deleteCookies("userId");
     navigator("/");
   }
 

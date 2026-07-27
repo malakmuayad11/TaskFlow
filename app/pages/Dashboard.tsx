@@ -1,30 +1,17 @@
 import Statistics from "../components/statistics/Statistics";
 import RecentTasksCard from "../components/TasksOverview/RecentTasksCard";
 import TasksOverview from "../components/TasksOverview/TasksOverview";
-import { getTasksByUserId } from "../services/indexedDB/taskService";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { TasksContext } from "../context/TasksContext";
+import { useLoadTasks } from "~/hooks/useLoadTasks";
 
 export default function Dashboard() {
   const userId = useContext(UserContext)?.user?.userId;
   const setTasks = useContext(TasksContext).setTasks;
 
-  useEffect(() => {
-    async function loadTasks() {
-      if (!userId) return;
+  if (userId) useLoadTasks(userId, setTasks);
 
-      try {
-        const result = await getTasksByUserId(userId);
-        setTasks(result);
-        console.log("Tasks are loaded");
-      } catch (error) {
-        console.error("Failed to load tasks:", error);
-      }
-    }
-
-    loadTasks();
-  }, [userId, setTasks]);
   return (
     <div id="pageLayout">
       <h2>Dashboard</h2>

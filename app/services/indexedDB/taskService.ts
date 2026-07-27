@@ -1,8 +1,8 @@
 import type { Task } from "../../types/Task";
 import { getDB } from "./indexedDbService";
 
-export function addTask(task: Task) {
-  const db = getDB();
+export async function addTask(task: Task) {
+  const db = await getDB();
 
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -26,8 +26,8 @@ export function addTask(task: Task) {
   });
 }
 
-export function updateTask(task: Task): Promise<IDBValidKey> {
-  const db = getDB();
+export async function updateTask(task: Task): Promise<IDBValidKey> {
+  const db = await getDB();
   return new Promise((resolve, reject) => {
     if (!db) {
       reject(new Error("Database is not initialized."));
@@ -62,8 +62,8 @@ export function updateTask(task: Task): Promise<IDBValidKey> {
   });
 }
 
-export function deleteTask(taskId: number) {
-  const db = getDB();
+export async function deleteTask(taskId: number) {
+  const db = await getDB();
   if (!db) {
     console.log("Database is not initialized.");
     return;
@@ -95,8 +95,8 @@ export function deleteTask(taskId: number) {
   };
 }
 
-export function getTasksByUserId(userId: number): Promise<Task[]> {
-  const db = getDB();
+export async function getTasksByUserId(userId: number): Promise<Task[]> {
+  const db = await getDB();
 
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -120,8 +120,8 @@ export function getTasksByUserId(userId: number): Promise<Task[]> {
   });
 }
 
-export function deleteAllUserTasks(userId: number): Promise<void> {
-  const db = getDB();
+export async function deleteAllUserTasks(userId: number): Promise<void> {
+  const db = await getDB();
 
   return new Promise((resolve, reject) => {
     if (!db) {
