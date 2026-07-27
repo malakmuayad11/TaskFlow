@@ -49,7 +49,10 @@ export default function Aside({
               </NavLink>
             </li>
             <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <NavLink to="/tasks" className="flex justify-start gap-1">
+              <NavLink
+                to="/dashboard/tasks"
+                className="flex justify-start gap-1"
+              >
                 <img
                   src="src/assets/user.svg"
                   alt="User icon"
@@ -59,7 +62,10 @@ export default function Aside({
               </NavLink>
             </li>
             <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <NavLink to="/settings" className="flex justify-start gap-1.5">
+              <NavLink
+                to="/dashboard/settings"
+                className="flex justify-start gap-1.5"
+              >
                 <img
                   src="src/assets/order.svg"
                   alt="Order icon"
