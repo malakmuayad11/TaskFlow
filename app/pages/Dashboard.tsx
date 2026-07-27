@@ -8,7 +8,6 @@ import { TasksContext } from "../context/TasksContext";
 
 export default function Dashboard() {
   const userId = useContext(UserContext)?.user?.userId;
-  // const [isCollapsed, setIsCollapsed] = useState(window.innerWidth <= 768);
   const setTasks = useContext(TasksContext).setTasks;
 
   useEffect(() => {
@@ -26,14 +25,8 @@ export default function Dashboard() {
 
     loadTasks();
   }, [userId, setTasks]);
-
-  // function handleCollapseClick() {
-  //   setIsCollapsed((prev) => !prev);
-  // }
   return (
     <div id="pageLayout">
-      {/* <Aside isCollapsed={isCollapsed} onCollapseClick={handleCollapseClick} />
-      <Header onCollapseClick={handleCollapseClick} /> */}
       <h2>Dashboard</h2>
       <Statistics />
       <TasksOverview />
