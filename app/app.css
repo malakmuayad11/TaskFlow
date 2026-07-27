@@ -1,9 +1,41 @@
 @import "tailwindcss";
 
-/* @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-} */
+@theme {
+  /* Brand Colors */
+  --color-primary: #5850ec;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #eef2ff;
+
+  /* Light Theme Neutrals */
+  --color-bg-main: #f8fafc;
+  --color-bg-surface: #ffffff;
+  --color-border-color: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+
+  /* Dark Theme Neutrals */
+  --color-darkBg-main: #0b0f17;
+  --color-darkBg-surface: #111827;
+  --color-darkVorder-color: #1f2937;
+  --color-darkText-primary: #f9fafb;
+  --color-darkText-secondary: #9ca3af;
+
+  /* Status Colors */
+  --color-status-high-text: #dc2626;
+  --color-status-high-bg: #fef2f2;
+  --color-status-medium-text: #d97706;
+  --color-status-medium-bg: #fffbeb;
+  --color-status-low-text: #16a34a;
+  --color-status-low-bg: #f0fdf4;
+  --color-status-progress-text: #2563eb;
+  --color-status-progress-bg: #eff6ff;
+
+  /* Layout Radius & Fonts */
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-badge: 9999px;
+}
 
 /* html,
 body {
