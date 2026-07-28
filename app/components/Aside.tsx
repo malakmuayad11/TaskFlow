@@ -1,7 +1,16 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { useNavigate, NavLink } from "react-router";
+import { useNavigate } from "react-router";
 import { deleteCookies } from "~/services/cookiesService";
+import Li from "./Li";
+import Logo from "../assets/logo.png";
+import homeIconLight from "../assets/home-icon-light.svg";
+import homeIconDark from "../assets/home-icon-dark.svg";
+import tasksIconLight from "../assets/tasks-icon-light.svg";
+import tasksIconDark from "../assets/tasks-icon-dark.svg";
+import settingsIconLight from "../assets/settings-icon-light.svg";
+import settingsIconDark from "../assets/settings-icon-dark.svg";
+import logoutIcon from "../assets/logout-icon.svg";
 
 export default function Aside({
   isCollapsed,
@@ -23,64 +32,51 @@ export default function Aside({
     <>
       <aside
         id="sideMenu"
-        className={`w-44 row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 min-h-screen bg-slate-900 z-50 transform ${isCollapsed ? "-translate-x-full" : "translate-x-0"} transition-all duration-300 ease-in-out`}
+        className={`flex flex-col row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 min-h-screen bg-bg-surface text-text-primary z-50 transform transition-all duration-300 ease-in-out ${
+          isCollapsed ? "-translate-x-full md:w-0" : "translate-x-0 md:flex"
+        }`}
       >
-        <div className="">
-          <h1 className="text-primary-light p-4 flex gap-1 justify-start">
+        <div className="p-4">
+          <h1 className="flex items-center gap-2 font-semibold text-xl">
             <img
-              src="src/assets/logo.svg"
+              src={Logo}
+              loading="eager"
               alt="Logo icon"
               className="w-5 h-5"
             />
-            TaskFlow
+            <span className="leading-none">TaskFlow</span>
           </h1>
         </div>
-        <nav className="m-2">
+
+        <nav className="m-2 flex flex-col justify-between flex-1 h-full">
           <ul className="flex flex-col gap-2">
-            <li className="text-gray-300 py-4 bg-blue-800/30 rounded-md hover:cursor-pointer md:pl-3">
-              <NavLink
-                to="/dashboard"
-                className="flex items-center justify-start gap-0.5"
-              >
-                <img
-                  src="src/assets/dashboard.svg"
-                  alt="Dashboard icon"
-                  className="w-5 h-5"
-                />
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <NavLink
-                to="/dashboard/tasks"
-                className="flex justify-start gap-1"
-              >
-                <img
-                  src="src/assets/user.svg"
-                  alt="User icon"
-                  className="w-5 h-5"
-                />
-                Tasks
-              </NavLink>
-            </li>
-            <li className="py-4 text-gray-300 md:p-4 hover:bg-blue-800/40 hover:rounded-md hover:cursor-pointer">
-              <NavLink
-                to="/dashboard/settings"
-                className="flex justify-start gap-1.5"
-              >
-                <img
-                  src="src/assets/order.svg"
-                  alt="Order icon"
-                  className="w-4.5 h-4.5"
-                />
-                Settings
-              </NavLink>
-            </li>
+            <Li
+              to="/dashboard"
+              content="Dashboard"
+              activeImgSrc={homeIconLight}
+              inActiveImgSrc={homeIconDark}
+            />
+            <Li
+              to="/dashboard/tasks"
+              content="Tasks"
+              activeImgSrc={tasksIconLight}
+              inActiveImgSrc={tasksIconDark}
+            />
+            <Li
+              to="/dashboard/settings"
+              content="Settings"
+              activeImgSrc={settingsIconLight}
+              inActiveImgSrc={settingsIconDark}
+            />
           </ul>
-          <button className="text-white" onClick={logout}>
-            Log out
-          </button>
         </nav>
+        <button
+          className="items-end flex gap-1 ml-3 mb-2 hover:cursor-pointer"
+          onClick={logout}
+        >
+          <img src={logoutIcon} alt="Logout icon" loading="eager" />
+          Logout
+        </button>
       </aside>
       <div
         onClick={onCollapseClick}
