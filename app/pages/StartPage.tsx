@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
+import Button from "~/components/Button";
 
 export default function StartPage() {
   const navigator = useNavigate();
@@ -23,12 +24,7 @@ export default function StartPage() {
             </h1>
           </div>
           <p className="text-text-secondary">Your Flow, Simplified.</p>
-          <button
-            className="bg-primary hover:bg-primary-hover text-primary-light rounded-btn py-3 px-6 hover:cursor-pointer w-full text-xl hover:-translate-y-1 transition-transform duration-300"
-            onClick={goToSignUp}
-          >
-            Sign Up
-          </button>
+          <Button content="Sign Up" onClick={goToSignUp} />
           <div>
             <p className="text-text-secondary">
               Already have an account?{" "}

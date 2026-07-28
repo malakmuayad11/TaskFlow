@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { deleteAllUserTasks } from "../../services/indexedDB/taskService";
 import { UserContext } from "../../context/UserContext";
 import ConfirmationDialog from "./ConfirmationDialog";
+import { useToast } from "~/hooks/useToast";
 
 export default function DeleteAllTasksSettings() {
   const userId = useContext(UserContext)?.user?.userId;
@@ -9,15 +10,7 @@ export default function DeleteAllTasksSettings() {
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  useEffect(() => {
-    if (!showToast) return;
-
-    const timer = setTimeout(() => {
-      setShowToast(false);
-    }, 2200);
-
-    return () => clearTimeout(timer);
-  }, [showToast]);
+  useToast(showToast, setShowToast);
 
   async function handleYesClick() {
     if (!userId) return;
