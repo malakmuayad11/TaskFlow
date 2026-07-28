@@ -10,7 +10,7 @@ export default function StartPage() {
   return (
     <>
       <div className="flex justify-center items-center min-h-screen w-screen bg-slate-50">
-        <div className="flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 border-border-color shadow-lg bg-white max-w-md w-full animate-slide-down">
+        <div className="flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 border-border-color shadow-lg bg-white max-w-md md:w-full animate-slide-down">
           <div className="flex items-center">
             <img
               src="app\assets\logo.png"
@@ -18,7 +18,9 @@ export default function StartPage() {
               loading="eager"
               className="w-10 h-10"
             />
-            <h1 className="text-7xl font-semibold text-primary">TaskFlow</h1>
+            <h1 className="text-5xl md:text-7xl font-semibold text-primary">
+              TaskFlow
+            </h1>
           </div>
           <p className="text-text-secondary">Your Flow, Simplified.</p>
           <button

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import type { FormEvent } from "react";
 import { addUser } from "../../services/indexedDB/userService";
 import { useNavigate } from "react-router";
+import RequiredComponent from "../requiredComponent";
 
 export default function SignUp() {
   const firstName = useRef<HTMLInputElement | null>(null);
@@ -30,8 +31,10 @@ export default function SignUp() {
       return; // implement validation function
     }
 
-    const file = profilePictureURL.current.files?.[0] ?? null; // provide a default picture
-    const profilePicture = file ? URL.createObjectURL(file) : "";
+    const file = profilePictureURL.current.files?.[0];
+    const profilePicture = file
+      ? URL.createObjectURL(file)
+      : "app/assets/profilePicturePlaceholder.svg"; // provide a default picture
 
     try {
       await addUser({
@@ -48,16 +51,25 @@ export default function SignUp() {
   }
 
   return (
-    <form onSubmit={signUp}>
-      <div>
+    <form
+      onSubmit={signUp}
+      className="grid grid-cols-2 gap-1 bg-bg-main p-2 justify-center align-center"
+    >
+      <h2 className="col-span-2">Create Your Account</h2>
+      <div className="flex flex-col gap-0.5">
         <label>First Name:</label>
-        <input ref={firstName} type="text" required />
+        <input
+          className="border-[1.75px] border-border-color rounded-btn bg-primary-light p-1 focus:outline-primary"
+          ref={firstName}
+          type="text"
+          required
+        />
       </div>
-      <div>
+      <div className="flex flex-col gap-0.5">
         <label>Last Name:</label>
         <input ref={lastName} type="text" required />
       </div>
-      <div>
+      <div className="col-span-2">
         <label>Email:</label>
         <input ref={email} type="email" required />
       </div>
@@ -73,7 +85,7 @@ export default function SignUp() {
         <label>Profile Picture:</label>
         <input ref={profilePictureURL} type="file" required accept="image/*" />
       </div>
-      <button>Submit</button>
+      <button className="col-span-2">Submit</button>
     </form>
   );
 }
