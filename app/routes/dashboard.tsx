@@ -11,12 +11,13 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <Header onCollapseClick={handleCollapseClick} />
+    <div className="grid md:grid-cols-[auto_1fr] ">
       <Aside isCollapsed={isCollapsed} onCollapseClick={handleCollapseClick} />
-      <main>
+      <Header onCollapseClick={handleCollapseClick} />
+
+      <main className="row-span-2 min-h-screen">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }

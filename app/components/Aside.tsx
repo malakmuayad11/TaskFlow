@@ -23,10 +23,10 @@ export default function Aside({
     <>
       <aside
         id="sideMenu"
-        className={`overflow-hidden border-r border-gray-500 fixed md:static top-0 left-0 h-full bg-slate-900 z-50 transform ${isCollapsed ? "-translate-x-full" : "translate-x-0"} transition-all duration-300 ease-in-out`}
+        className={`w-44 row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 min-h-screen bg-slate-900 z-50 transform ${isCollapsed ? "-translate-x-full" : "translate-x-0"} transition-all duration-300 ease-in-out`}
       >
-        <div className="mb-6">
-          <h1 className="text-amber-50 p-4 flex gap-1 justify-start">
+        <div className="">
+          <h1 className="text-primary-light p-4 flex gap-1 justify-start">
             <img
               src="src/assets/logo.svg"
               alt="Logo icon"
