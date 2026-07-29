@@ -20,17 +20,19 @@ export default function RecentTasksCard() {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Recent Tasks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {getRecentTasks().map((task) => (
-          <TaskItem key={task.taskId} {...task} />
-        ))}
-      </tbody>
-    </table>
+    <section className="bg-bg-surface border border-border-color rounded-btn p-2 mt-2 hover:shadow-lg duration-200">
+      <table className="w-full">
+        <thead>
+          <tr>
+            <th className="text-left text-m font-medium">Recent Tasks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {getRecentTasks().map((task) => (
+            <TaskItem key={task.taskId} {...task} />
+          ))}
+        </tbody>
+      </table>
+    </section>
   );
 }

@@ -13,8 +13,8 @@ export default function Dashboard() {
   if (userId) useLoadTasks(userId, setTasks);
 
   return (
-    <div id="pageLayout">
-      <h2>Dashboard</h2>
+    <div className="mt-2">
+      <h2 className="text-3xl font-semibold">Dashboard</h2>
       <Statistics />
       <TasksOverview />
       <RecentTasksCard />

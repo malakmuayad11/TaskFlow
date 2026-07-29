@@ -1,4 +1,5 @@
 import type { Task } from "../../types/Task";
+import PriorityItem from "./PriorityItem";
 
 export default function TasksByPriorityCard({ tasks }: { tasks: Task[] }) {
   const highPriorityTasks: number = tasks.reduce(
@@ -17,23 +18,11 @@ export default function TasksByPriorityCard({ tasks }: { tasks: Task[] }) {
   );
 
   return (
-    <section>
-      <h2>Tasks by Priority</h2>
-      <div>
-        <div className="rounded-full w-3 h-3 bg-red-600"></div>
-        <p>High</p>
-        <p>{highPriorityTasks}</p>
-      </div>
-      <div>
-        <div className="rounded-full w-3 h-3 bg-amber-600"></div>
-        <p>Medium</p>
-        <p>{mediumPriorityTasks}</p>
-      </div>
-      <div>
-        <div className="rounded-full w-3 h-3 bg-green-600"></div>
-        <p>Low</p>
-        <p>{lowPriorityTasks}</p>
-      </div>
+    <section className="flex flex-col gap-3 p-2 bg-bg-surface border border-border-color rounded-btn hover:shadow-lg duration-200">
+      <h5 className="text-m font-medium">Tasks by Priority</h5>
+      <PriorityItem priority="High" tasksNumber={highPriorityTasks} />
+      <PriorityItem priority="Medium" tasksNumber={mediumPriorityTasks} />
+      <PriorityItem priority="Low" tasksNumber={lowPriorityTasks} />
     </section>
   );
 }

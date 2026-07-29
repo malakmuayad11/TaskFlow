@@ -19,7 +19,7 @@ export default function Header({
   }
 
   return (
-    <header className=" relative flex gap-2 justify-between mt-0.5 border-b border-gray-500 p-1">
+    <header className="bg-bg-main relative flex gap-2 justify-between mt-0.5 border-b border-gray-500 p-1">
       <div className="flex justify-evenly shrink-0 gap-0.5 mb-0.5">
         <button
           id="btnCollapse"
@@ -33,11 +33,6 @@ export default function Header({
             className="h-7 w-7 pr-1"
           />
         </button>
-        <input
-          type="search"
-          placeholder="Search tasks..."
-          className="border-[1.75px] border-border-color rounded-btn bg-primary-light p-1 focus:outline-primary w-full"
-        />
       </div>
       <div className="flex items-center -gap-1">
         <button className=" cursor-pointer flex gap-1" onClick={toggleTheme}>

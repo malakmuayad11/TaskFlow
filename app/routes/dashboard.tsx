@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className={`md:grid min-h-screen transition-[grid-template-columns]`}
+      className="md:grid min-h-screen grid-rows-[auto_1fr] transition-[grid-template-columns]"
       style={{
         gridTemplateColumns: isCollapsed
           ? "0px minmax(0,1fr)"
@@ -25,7 +25,7 @@ export default function Dashboard() {
       <Aside isCollapsed={isCollapsed} onCollapseClick={handleCollapseClick} />
       <Header onCollapseClick={handleCollapseClick} />
 
-      <main className={`row-span-2 min-h-screen`}>
+      <main className={`row-span-2 bg-bg-main p-4 container mx-auto`}>
         <Outlet />
       </main>
     </div>
