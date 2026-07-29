@@ -10,22 +10,22 @@ export default function Dashboard() {
 
   function handleCollapseClick() {
     setIsCollapsed((prev) => !prev);
+    console.log("collapsed");
   }
 
   return (
     <div
-      className={`grid min-h-screen ${
-        isCollapsed
-          ? "md:grid-cols-[minmax(0,1fr)]"
-          : "md:grid-cols-[240px_minmax(0,1fr)]"
-      }`}
+      className={`md:grid min-h-screen transition-[grid-template-columns]`}
+      style={{
+        gridTemplateColumns: isCollapsed
+          ? "0px minmax(0,1fr)"
+          : "240px minmax(0,1fr)",
+      }}
     >
       <Aside isCollapsed={isCollapsed} onCollapseClick={handleCollapseClick} />
       <Header onCollapseClick={handleCollapseClick} />
 
-      <main
-        className={`row-span-2 min-h-screen ${!isCollapsed ? "md:col-start-2" : ""}`}
-      >
+      <main className={`row-span-2 min-h-screen`}>
         <Outlet />
       </main>
     </div>

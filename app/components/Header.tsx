@@ -10,7 +10,7 @@ export default function Header({
   const fullName = user?.firstName + " " + user?.lastName;
 
   return (
-    <header className="flex gap-2 justify-between mt-0.5 border-b border-gray-500 p-1">
+    <header className=" relative flex gap-2 justify-between mt-0.5 border-b border-gray-500 p-1">
       <div className="flex justify-evenly shrink-0 gap-0.5">
         <button
           id="btnCollapse"

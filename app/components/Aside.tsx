@@ -32,8 +32,8 @@ export default function Aside({
     <>
       <aside
         id="sideMenu"
-        className={`flex flex-col row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 min-h-screen bg-bg-surface text-text-primary z-50 transform transition-all duration-300 ease-in-out ${
-          isCollapsed ? "-translate-x-full md:w-0" : "translate-x-0 md:flex"
+        className={`flex flex-col row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 h-screen bg-bg-surface text-text-primary z-50 transform transition-all duration-300 ease-in-out ${
+          isCollapsed ? "-translate-x-full md:translate-x-0" : "translate-x-0"
         }`}
       >
         <div className="p-4">
@@ -48,7 +48,7 @@ export default function Aside({
           </h1>
         </div>
 
-        <nav className="m-2 flex flex-col justify-between flex-1 h-full">
+        <nav className="m-2 flex flex-col justify-between flex-1">
           <ul className="flex flex-col gap-2">
             <Li
               to="/dashboard"
@@ -81,7 +81,7 @@ export default function Aside({
       <div
         onClick={onCollapseClick}
         id="overlay"
-        className={`fixed inset-0 bg-black/50 ${isCollapsed ? "hidden" : "md:hidden"}`}
+        className={`z-40 fixed inset-0 bg-black/50 ${isCollapsed ? "hidden" : "md:hidden"}`}
       />
     </>
   );
