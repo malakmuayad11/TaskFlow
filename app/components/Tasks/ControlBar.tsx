@@ -6,55 +6,44 @@ type ControlBarProps = {
   onSearch: (title: string) => void;
   onFilterChange: (value: string) => void;
   onAdd: (addedTask: Omit<Task, "taskId">) => void;
+  onStartAdd: () => void;
+  // IsAddingTask: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ControlBar({
   onSearch,
   onFilterChange,
-  onAdd,
+  onStartAdd,
 }: ControlBarProps) {
-  const [isAddingTask, setIsAddingTask] = useState(false);
   const [filter, setFilter] = useState("oldest");
 
-  function handleSave(addedTask: Omit<Task, "taskId">) {
-    onAdd(addedTask);
-    setIsAddingTask(false);
-  }
-
-  function handleCancel() {
-    setIsAddingTask(false);
-  }
-
   return (
-    <>
-      {isAddingTask && (
-        <AddEditTaskForm
-          onCancel={handleCancel}
-          isAddMode={true}
-          onSave={handleSave}
-        />
-      )}
-      {!isAddingTask && (
-        <div>
-          <input
-            type="search"
-            placeholder="Search tasks..."
-            onChange={(e) => onSearch(e.target.value.trim())}
-          />
-          <label>Filters</label>
-          <select
-            value={filter}
-            onChange={(e) => {
-              onFilterChange(e.target.value);
-              setFilter(e.target.value.toLowerCase());
-            }}
-          >
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-          </select>
-          <button onClick={() => setIsAddingTask(true)}>+ Add Task</button>
-        </div>
-      )}
-    </>
+    <div className="flex gap-1">
+      <input
+        className="bg-bg-surface md:p-0.5 text-text-secondary border border-border-color rounded-btn focus:outline-primary"
+        type="search"
+        placeholder="Search tasks..."
+        onChange={(e) => onSearch(e.target.value.trim())}
+      />
+
+      <select
+        className=" bg-bg-surface md:p-0.5 text-text-primary border border-border-color rounded-btn"
+        value={filter}
+        onChange={(e) => {
+          onFilterChange(e.target.value);
+          setFilter(e.target.value.toLowerCase());
+        }}
+      >
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+      </select>
+
+      <button
+        className={`ml-auto bg-primary hover:bg-primary-hover text-primary-light rounded-btn p-0.5 md:p-1 hover:cursor-pointer text-md hover:-translate-y-1 transition-transform duration-300`}
+        onClick={onStartAdd}
+      >
+        + Add Task
+      </button>
+    </div>
   );
 }

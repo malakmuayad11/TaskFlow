@@ -13,18 +13,18 @@ export default function TasksTable({
   onEdit,
 }: TasksTableProps) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Task</th>
-          <th>Status</th>
-          <th>Priority</th>
-          <th>Due Date</th>
-          <th>Actions</th>
+    <table className="w-full">
+      <thead className="">
+        <tr className="text-left text-m font-medium">
+          <th className="pb-4">Task</th>
+          <th className="pb-4">Status</th>
+          <th className="pb-4">Due Date</th>
+          <th className="pb-4">Priority</th>
+          <th className="pb-4">Actions</th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody className="bg-bg-surface border-border-color border">
         {tasks.map((task) => (
           <TaskRow
             key={task.taskId}

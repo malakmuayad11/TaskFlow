@@ -11,7 +11,7 @@ export default function Tasks() {
 
   return (
     <div>
-      <TasksHeader />
+      {/* <TasksHeader /> */}
       {view === "List" ? (
         <TasksList initialTasks={tasks} />
       ) : (
