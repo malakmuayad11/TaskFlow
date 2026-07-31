@@ -16,10 +16,12 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const [search, setSearch] = useState("");
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     setTasks(initialTasks);
     setCurrentPage(1);
   }, [initialTasks]);
+
   const filteredTasks = tasks.filter((task) =>
     task.title.toLowerCase().includes(search.toLowerCase()),
   );

@@ -1,5 +1,5 @@
 import type { Task } from "../../types/Task";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addTask } from "../../services/indexedDB/taskService";
 import AddEditTaskForm from "./AddEditTaskForm";
 import TasksColumn from "./TasksColumn";
@@ -7,6 +7,10 @@ import TasksColumn from "./TasksColumn";
 export default function TasksBoard({ initialTasks }: { initialTasks: Task[] }) {
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [tasks, setTasks] = useState(initialTasks);
+
+  useEffect(() => {
+    setTasks(initialTasks);
+  }, [initialTasks]);
 
   function handleAddTask(task: Omit<Task, "taskId">) {
     addTask(task as Task); // add it to indexedDB
@@ -29,7 +33,7 @@ export default function TasksBoard({ initialTasks }: { initialTasks: Task[] }) {
           onCancel={handleCancel}
         />
       ) : (
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <TasksColumn status="Todo" tasks={tasks} onAdd={handleAddTask} />
           <TasksColumn
             status="In Progress"

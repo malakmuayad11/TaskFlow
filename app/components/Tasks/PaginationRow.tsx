@@ -9,7 +9,7 @@ export default function PaginationRow({
 
   const buttons = Array.from({ length: totalButtons }, (_, index) => (
     <button
-      className="bg-primary text-primary-light w-6 h-6 md:w-7 md:h-7 rounded-btn"
+      className="bg-primary text-primary-light w-6 h-6 md:w-7 md:h-7 rounded-btn cursor-pointer hover:opacity-85"
       onClick={() => onclick(index + 1)}
       key={index}
     >
@@ -24,7 +24,7 @@ export default function PaginationRow({
       <p className="text-xs">
         Showing 1 to {showingTasksNum} of {totalTasks} tasks
       </p>
-      <div className="div gap-1">{buttons}</div>
+      <div className="flex gap-1">{buttons}</div>
     </section>
   );
 }

@@ -1,4 +1,6 @@
 import type { TaskPriority } from "../../types/Task";
+import calendarIcon from "../../assets/calendar-icon.svg";
+import Badge from "../Badge";
 
 type TaskCardProps = {
   title: string;
@@ -17,13 +19,19 @@ export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
       });
 
   return (
-    <section>
-      <h3>{title}</h3>
-      <div>
-        {/* <img>date icon</img> */}
-        <p>{formattedDate}</p>
+    <section className="flex flex-col gap-2 bg-bg-surface p-2 border border-border-color rounded-btn hover:shadow-lg duration-200 mb-2">
+      <h3 className="text-m font-bold">{title}</h3>
+      <div className="flex gap-0.5">
+        <img
+          className="w-4 h-4 translate-y-1.5"
+          src={calendarIcon}
+          alt="Calendar icon"
+        />
+        <p className="text-sm text-text-secondary translate-y-1.5">
+          {formattedDate}
+        </p>
+        <Badge variant={priority} />
       </div>
-      <p>{priority}</p>
     </section>
   );
 }
