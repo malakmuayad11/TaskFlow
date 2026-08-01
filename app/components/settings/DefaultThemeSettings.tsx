@@ -23,7 +23,7 @@ export default function DefaultThemeSettings() {
         <p className="font-sm text-text-secondary">
           Choose your preferred theme
         </p>
-        <div className="flex gap-1">
+        <div className="flex gap-1 md:w-40">
           <button
             className="flex-1 bg-primary text-primary-light rounded-btn p-1 -translate-y-1.5 cursor-pointer hover:opacity-90"
             onClick={() => handleBtnClick("Light")}

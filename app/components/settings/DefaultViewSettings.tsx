@@ -23,7 +23,7 @@ export default function DefaultViewSettings() {
         <p className="font-sm text-text-secondary">
           Choose your default tasks view
         </p>
-        <div className="flex gap-1 mt-1">
+        <div className="flex gap-1 mt-1 md:w-40">
           <button
             className="flex-1 bg-primary text-primary-light rounded-btn p-1 -translate-y-3 cursor-pointer hover:opacity-90"
             onClick={() => handleBtnClick("List")}
