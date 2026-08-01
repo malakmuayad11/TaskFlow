@@ -12,10 +12,18 @@ export default function ExportDataSettings() {
   }
 
   return (
-    <section>
-      <h4>Export Tasks</h4>
-      <p>Download all your tasks data</p>
-      <button onClick={handleExportClick}>Export</button>
+    <section className="border-b border-b-border-color">
+      <h4 className="font-medium">Export Tasks</h4>
+
+      <div className="flex justify-between">
+        <p className="text-text-secondary">Download all your tasks data</p>
+        <button
+          className="bg-primary text-primary-light rounded-btn py-1 px-3.5 -translate-y-1.5 cursor-pointer hover:opacity-90"
+          onClick={handleExportClick}
+        >
+          Export
+        </button>
+      </div>
     </section>
   );
 }
