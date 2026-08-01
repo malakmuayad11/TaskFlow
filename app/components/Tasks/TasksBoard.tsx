@@ -12,14 +12,16 @@ export default function TasksBoard({ initialTasks }: { initialTasks: Task[] }) {
     setTasks(initialTasks);
   }, [initialTasks]);
 
-  function handleAddTask(task: Omit<Task, "taskId">) {
-    addTask(task as Task); // add it to indexedDB
-    setTasks((previousTasks) => [...previousTasks, task as Task]); // refresh the UI
+  function handleAddTask() {
+    setIsAddingTask(true);
   }
   function handleSave(addedTask: Omit<Task, "taskId">) {
-    handleAddTask(addedTask);
+    const newTask: Task = { ...addedTask, taskId: Date.now() };
+    addTask(newTask);
+    setTasks((previousTasks) => [...previousTasks, newTask]);
     setIsAddingTask(false);
   }
+
   function handleCancel() {
     setIsAddingTask(false);
   }

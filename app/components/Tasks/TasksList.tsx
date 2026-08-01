@@ -25,17 +25,21 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const filteredTasks = tasks.filter((task) =>
     task.title.toLowerCase().includes(search.toLowerCase()),
   );
+
   const displayedTasks = paginateArray(filteredTasks, currentPage, 5);
+
   function handleSearch(title: string) {
     setSearch(title);
     setCurrentPage(1);
   }
+
   function handleFilterChange(filter: string) {
     if (filter.toLowerCase() === "newest") {
       setTasks((previousTasks) =>
         [...previousTasks].sort((a, b) => b.taskId - a.taskId),
       );
     }
+
     if (filter.toLocaleLowerCase() === "oldest") {
       setTasks((previousTasks) =>
         [...previousTasks].sort((a, b) => a.taskId - b.taskId),
@@ -43,6 +47,7 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
     }
     setCurrentPage(1);
   }
+
   function handleAddTask(task: Omit<Task, "taskId">) {
     const newTask: Task = { ...task, taskId: Date.now() };
     addTask(newTask);
@@ -50,15 +55,18 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
     setIsAddingTask(false);
     setCurrentPage(1);
   }
+
   function handleDelete(id: number) {
     deleteTask(id);
     setTasks((previousTasks) =>
       previousTasks.filter((task) => task.taskId !== id),
     );
   }
+
   function handleEdit(task: Task) {
     setEditingTask(task);
   }
+
   function handleSave(taskData: Omit<Task, "taskId">) {
     const updatedTask: Task = { ...taskData, taskId: editingTask!.taskId };
     updateTask(updatedTask);
@@ -69,16 +77,18 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
     );
     setEditingTask(null);
   }
+
   function handleCancel() {
     setEditingTask(null);
     setIsAddingTask(false);
   }
+
   function handleClick(pageNum: number) {
     setCurrentPage(pageNum);
   }
+
   return (
     <>
-      {" "}
       {editingTask || isAddingTask ? (
         <AddEditTaskForm
           task={editingTask ?? undefined}
@@ -88,7 +98,6 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
         />
       ) : (
         <section>
-          {" "}
           <ControlBar
             onSearch={handleSearch}
             onFilterChange={handleFilterChange}

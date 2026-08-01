@@ -1,14 +1,12 @@
 import TaskCard from "./TaskCard";
 import type { Task, TaskStatus } from "../../types/Task";
-import AddEditTaskForm from "./AddEditTaskForm";
-import { useState } from "react";
 import Badge from "../Badge";
 import type { Variant } from "../Badge";
 
 type TasksColumnProps = {
   status: TaskStatus;
   tasks: Task[];
-  onAdd: (task: Omit<Task, "taskId">) => void;
+  onAdd: () => void;
 };
 
 export default function TasksColumn({
@@ -17,16 +15,6 @@ export default function TasksColumn({
   onAdd,
 }: TasksColumnProps) {
   const tasksByStatus = tasks.filter((task) => task.status === status);
-  const [isAddingTask, setIsAddingTask] = useState(false);
-
-  function handleSave(addedTask: Omit<Task, "taskId">) {
-    onAdd(addedTask);
-    setIsAddingTask(false);
-  }
-
-  function handleCancel() {
-    setIsAddingTask(false);
-  }
 
   const style =
     "bg-linear-to-b via-white to-white border-t-2 rounded-2xl p-4 shadow-sm ";
@@ -39,13 +27,6 @@ export default function TasksColumn({
 
   return (
     <section>
-      {/* {isAddingTask && (
-        <AddEditTaskForm
-          onCancel={handleCancel}
-          isAddMode={true}
-          onSave={handleSave}
-        />
-      )} */}
       <div
         className={
           status === "Completed"
@@ -75,7 +56,8 @@ export default function TasksColumn({
         ))}
         <button
           className="w-full font-bold text-primary bg-bg-surface border border-border-color rounded-btn mt-2 cursor-pointer hover:opacity-70 duration-200"
-          onClick={() => setIsAddingTask(true)}
+          // onClick={() => setIsAddingTask(true)}
+          onClick={onAdd}
         >
           + Add Task
         </button>

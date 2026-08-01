@@ -1,13 +1,11 @@
 import { useState } from "react";
 import type { Task } from "../../types/Task.ts";
-import AddEditTaskForm from "./AddEditTaskForm";
 
 type ControlBarProps = {
   onSearch: (title: string) => void;
   onFilterChange: (value: string) => void;
   onAdd: (addedTask: Omit<Task, "taskId">) => void;
   onStartAdd: () => void;
-  // IsAddingTask: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ControlBar({
