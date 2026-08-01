@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className="md:grid min-h-screen grid-rows-[auto_1fr] transition-[grid-template-columns]"
+      className="bg-bg-main md:grid min-h-screen grid-rows-[auto_1fr] transition-[grid-template-columns]"
       style={{
         gridTemplateColumns: isCollapsed
           ? "0px minmax(0,1fr)"

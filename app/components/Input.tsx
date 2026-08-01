@@ -14,6 +14,7 @@ type InputProps = {
   accept?: string;
   className?: string;
   wrapperClassName?: string;
+  placeholder?: string;
 };
 
 export default function Input({
@@ -29,6 +30,7 @@ export default function Input({
   accept,
   className,
   wrapperClassName,
+  placeholder,
 }: InputProps) {
   const [isValid, setIsValid] = useState(true);
 
@@ -65,6 +67,7 @@ export default function Input({
         {...(accept && { accept })}
         {...(isHidden && { hidden: true })}
         onChange={(e) => handleValidation(e)}
+        placeholder={placeholder}
       />
     </InputWrapper>
   );

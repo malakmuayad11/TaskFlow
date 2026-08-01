@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Task, TaskPriority, TaskStatus } from "../../types/Task";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import Input from "../Input";
+import Button from "../Button";
 
 type AddEditTaskFormProps = {
   task?: Task;
@@ -16,25 +18,31 @@ export default function AddEditTaskForm({
   onSave,
   onCancel,
 }: AddEditTaskFormProps) {
-  const [title, setTitle] = useState(task?.title ?? "");
+  const titleRef = useRef<HTMLInputElement | null>(null);
   const [status, setStatus] = useState<TaskStatus>(task?.status ?? "Todo");
   const [priority, setPriority] = useState<TaskPriority>(
     task?.priority ?? "Low",
   );
-  const [dueDate, setDueDate] = useState<Date>(task?.dueDate ?? new Date());
+  const dueDateRef = useRef<HTMLInputElement | null>(null);
   const user = useContext(UserContext)?.user;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!user?.userId) return;
 
+    if (titleRef.current?.value === "") return;
+
+    const dueDateValue = dueDateRef.current?.value
+      ? new Date(dueDateRef.current.value)
+      : (task?.dueDate ?? new Date());
+
     if (isAddMode) {
       onSave({
         userId: user?.userId ?? 0,
-        title: title,
-        priority: priority,
-        status: status,
-        dueDate: dueDate,
+        title: titleRef.current?.value ?? task?.title ?? "",
+        priority,
+        status,
+        dueDate: dueDateValue,
       });
     }
 
@@ -42,30 +50,35 @@ export default function AddEditTaskForm({
     if (!isAddMode && task) {
       onSave({
         ...task,
-        title,
+        title: titleRef.current?.value ?? task?.title ?? "",
         priority,
         status,
-        dueDate,
+        dueDate: dueDateValue,
       });
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <h2>{isAddMode ? "Add Task" : "Edit Task"}</h2>
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            value={title}
-            required
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Status</label>
+    <div className="mx-auto container">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-1 bg-bg-surface p-2 border border-border-color rounded-btn"
+      >
+        <h2 className="text-xl font-bold">
+          {isAddMode ? "Add New Task" : "Edit Task"}
+        </h2>
+        <Input
+          inputType="text"
+          labelName="Title"
+          ref={titleRef}
+          placeholder="Enter task title"
+        />
+        <div className="flex flex-col gap-1">
+          <label>
+            Status<span className="text-red-500">*</span>
+          </label>
           <select
+            className="border border-border-color rounded-btn p-2 bg-primary-light focus:outline-primary"
             required
             value={status}
             onChange={(e) => setStatus(e.target.value as Task["status"])}
@@ -75,9 +88,12 @@ export default function AddEditTaskForm({
             <option value="Completed">Completed</option>
           </select>
         </div>
-        <div>
-          <label>Priority</label>
+        <div className="flex flex-col gap-1">
+          <label>
+            Priority<span className="text-red-500">*</span>
+          </label>
           <select
+            className="border border-border-color rounded-btn p-2 bg-primary-light focus:outline-primary"
             required
             value={priority}
             onChange={(e) => setPriority(e.target.value as Task["priority"])}
@@ -87,22 +103,18 @@ export default function AddEditTaskForm({
             <option value="High">High</option>
           </select>
         </div>
-        <div>
-          <label>Due Date</label>
-          <input
-            type="date"
-            required
-            value={dueDate.toISOString().slice(0, 10)}
-            onChange={(e) => setDueDate(new Date(e.target.value))}
-          />
-        </div>
-        <div>
-          <button type="button" onClick={onCancel}>
+        <Input inputType="date" labelName="Due Date" ref={dueDateRef} />
+        <div className="flex gap-1 mt-2">
+          <button
+            className={`bg-bg-main hover:bg-bg-surface/50 text-text-primary rounded-btn py-3 px-6 hover:cursor-pointer w-full text-xl hover:-translate-y-1 transition-transform duration-300 border border-border-color`}
+            type="button"
+            onClick={onCancel}
+          >
             Cancel
           </button>
-          <button type="submit">Save</button>
+          <Button content="Save" />
         </div>
       </form>
-    </>
+    </div>
   );
 }

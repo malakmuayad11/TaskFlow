@@ -14,16 +14,6 @@
   --color-text-primary: #0f172a;
   --color-text-secondary: #64748b;
 
-  /* Status Colors */
-  --color-status-high-text: #dc2626;
-  --color-status-high-bg: #fef2f2;
-  --color-status-medium-text: #d97706;
-  --color-status-medium-bg: #fffbeb;
-  --color-status-low-text: #16a34a;
-  --color-status-low-bg: #f0fdf4;
-  --color-status-progress-text: #2563eb;
-  --color-status-progress-bg: #eff6ff;
-
   /* Fonts & Radius */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --radius-card: 12px;
