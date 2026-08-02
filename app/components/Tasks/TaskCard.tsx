@@ -17,7 +17,7 @@ export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
     ? "Invalid date"
     : parsedDueDate.toLocaleDateString("en-US", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "2-digit",
       });
 
