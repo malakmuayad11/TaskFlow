@@ -42,6 +42,10 @@
   --animate-slide-down: slide-down 1.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+body {
+  @apply font-sans;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   background-image: url("assets/calendar-icon.svg");
   background-size: 16px 16px;
