@@ -11,6 +11,8 @@ import AddEditTaskForm from "./AddEditTaskForm";
 import PaginationRow from "./PaginationRow";
 import { paginateArray } from "../../services/paginationService";
 import { ThemeContext } from "~/context/ThemeContext";
+import { useToast } from "~/hooks/useToast";
+
 export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const theme = useContext(ThemeContext).theme;
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -18,6 +20,9 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const [search, setSearch] = useState("");
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showToast, setShowToast] = useState(false);
+
+  useToast(showToast, setShowToast);
 
   useEffect(() => {
     setTasks(initialTasks);
@@ -63,6 +68,7 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
     setTasks((previousTasks) =>
       previousTasks.filter((task) => task.taskId !== id),
     );
+    setShowToast(true);
   }
 
   function handleEdit(task: Task) {
@@ -119,6 +125,11 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
               onclick={handleClick}
             />
           </div>
+          {showToast && (
+            <div className="fixed right-4.5 bottom-4.5 bg-[rgba(0, 0, 0, 0.55)] border border-black backdrop-blur-[10px] py-3 px-3.5 rounded-2xl max-w-90 leading-[1.35] text-red-500">
+              Task is deleted successfully.
+            </div>
+          )}
         </section>
       )}
     </>

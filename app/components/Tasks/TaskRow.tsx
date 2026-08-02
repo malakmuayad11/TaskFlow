@@ -4,8 +4,9 @@ import editIconDark from "../../assets/edit-icon-dark.svg";
 import editIconLight from "../../assets/edit-icon-light.svg";
 import deleteIconDark from "../../assets/delete-icon-dark.svg";
 import deleteIconLight from "../../assets/delete-icon-light.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
+import ConfirmationDialog from "../settings/ConfirmationDialog";
 interface TaskRowProps {
   title: string;
   status: TaskStatus;
@@ -24,8 +25,23 @@ export default function TaskRow({
   onDelete,
 }: TaskRowProps) {
   const theme = useContext(ThemeContext).theme;
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  return (
+  function handleDelete() {
+    setIsDeleting(true);
+  }
+
+  return isDeleting ? (
+    <tr className="w-full">
+      <td className="p-2" colSpan={5}>
+        <ConfirmationDialog
+          message={`Are you sure you want to delete the ${title} task?`}
+          onYesClick={onDelete}
+          onNoClick={() => setIsDeleting(false)}
+        />
+      </td>
+    </tr>
+  ) : (
     <TaskItem
       title={title}
       status={status}
@@ -42,7 +58,7 @@ export default function TaskRow({
           </button>
           <button
             className="w-5 h-5 cursor-pointer md:-translate-x-2"
-            onClick={onDelete}
+            onClick={handleDelete}
           >
             <img
               src={theme === "Light" ? deleteIconDark : deleteIconLight}
