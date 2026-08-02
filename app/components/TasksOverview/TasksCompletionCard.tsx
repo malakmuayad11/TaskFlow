@@ -33,7 +33,7 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
 
   return (
     <section
-      className={`items-center ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200`}
+      className={`items-center ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200`}
     >
       <h5 className="self-start text-m font-medium">Tasks Completion</h5>
       <div className="flex justify-center items-center gap-5">

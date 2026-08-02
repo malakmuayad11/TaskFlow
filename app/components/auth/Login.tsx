@@ -47,7 +47,7 @@ export default function Login() {
     >
       <form
         onSubmit={login}
-        className={`grid grid-cols-1 gap-2 w-full max-w-xl ${theme === "Light" ? " bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} p-2 md:p-4 border rounded-btn shadow-xl`}
+        className={`grid grid-cols-1 gap-2 w-full max-w-xl ${theme === "Light" ? " bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark shadow-primary/30"} p-2 md:p-4 border rounded-btn shadow-xl`}
       >
         <h2
           className={`text-2xl col-span-1 md:text-4xl font-semibold ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}

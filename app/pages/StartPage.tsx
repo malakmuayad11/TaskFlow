@@ -18,7 +18,7 @@ export default function StartPage() {
         className={`flex justify-center items-center min-h-screen w-screen ${theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"}`}
       >
         <div
-          className={`flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 ${theme === "Light" ? "bg-white border-border-color" : "bg-bg-surface-dark border-border-color-dark"} shadow-lg max-w-md md:w-full animate-slide-down`}
+          className={`flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 ${theme === "Light" ? "bg-white border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} shadow-lg max-w-md md:w-full animate-slide-down`}
         >
           <div className="flex items-center">
             <img

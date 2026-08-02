@@ -80,7 +80,7 @@ export default function SignUp() {
     >
       <form
         onSubmit={signUp}
-        className={`grid grid-cols-1 md:grid-cols-2 gap-2 w-full max-w-xl ${theme === "Light" ? "bg-bg-main border-border-color" : "bg-bg-surface-dark border-border-color-dark"} p-2 md:p-4 border rounded-btn shadow-xl`}
+        className={`grid grid-cols-1 md:grid-cols-2 gap-2 w-full max-w-xl ${theme === "Light" ? "bg-bg-main border-border-color" : "bg-bg-surface-dark border-border-color-dark shadow-primary/30"} p-2 md:p-4 border rounded-btn shadow-xl`}
       >
         <h2
           className={`text-2xl col-span-1 md:col-span-2 md:text-4xl font-semibold ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
