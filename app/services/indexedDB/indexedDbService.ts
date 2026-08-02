@@ -25,7 +25,7 @@ function openDatabase() {
         });
 
         store.createIndex("userIdIndex", "userId", {
-          unique: true,
+          unique: false,
         });
       }
     };
