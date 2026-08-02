@@ -6,7 +6,7 @@ type toastProps = {
 export default function Toast({ title, additionalStyle }: toastProps) {
   return (
     <div
-      className="
+      className={`
     fixed right-5 bottom-5
     flex items-center gap-3
     max-w-sm
@@ -21,13 +21,14 @@ export default function Toast({ title, additionalStyle }: toastProps) {
     text-green-600
     dark:text-green-400
     animate-in fade-in slide-in-from-bottom-4
-  "
+    ${additionalStyle ? additionalStyle : ""}
+  `}
     >
       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500/20">
         ✓
       </div>
 
-      <p>Account is created successfully.</p>
+      <p>{title}</p>
     </div>
   );
 }
