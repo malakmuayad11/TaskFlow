@@ -10,8 +10,6 @@ export default function RecentTasksCard() {
 
   function getRecentTasks(): Task[] {
     switch (tasks.length) {
-      case 0:
-        return [];
       case 1:
         return tasks.slice(-1);
       case 2:
@@ -25,18 +23,29 @@ export default function RecentTasksCard() {
     <section
       className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border rounded-btn p-2 mt-2 hover:shadow-lg duration-200`}
     >
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th className="text-left text-m font-medium">Recent Tasks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {getRecentTasks().map((task) => (
-            <TaskItem key={task.taskId} {...task} />
-          ))}
-        </tbody>
-      </table>
+      {tasks.length === 0 ? (
+        <>
+          <h5 className="font-medium">Recent Tasks</h5>
+          <p
+            className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+          >
+            No tasks are added recently.
+          </p>
+        </>
+      ) : (
+        <table className="w-full">
+          <thead>
+            <tr>
+              <th className="text-left font-medium">Recent Tasks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {getRecentTasks().map((task) => (
+              <TaskItem key={task.taskId} {...task} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 }
