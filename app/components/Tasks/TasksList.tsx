@@ -12,6 +12,7 @@ import PaginationRow from "./PaginationRow";
 import { paginateArray } from "../../services/paginationService";
 import { ThemeContext } from "~/context/ThemeContext";
 import { useToast } from "~/hooks/useToast";
+import Toast from "../Toast";
 
 export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const theme = useContext(ThemeContext).theme;
@@ -125,11 +126,7 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
               onclick={handleClick}
             />
           </div>
-          {showToast && (
-            <div className="fixed right-4.5 bottom-4.5 bg-[rgba(0, 0, 0, 0.55)] border border-black backdrop-blur-[10px] py-3 px-3.5 rounded-2xl max-w-90 leading-[1.35] text-red-500">
-              Task is deleted successfully.
-            </div>
-          )}
+          {showToast && <Toast title="Task is deleted successfully." />}
         </section>
       )}
     </>

@@ -4,6 +4,7 @@ import type { Views } from "~/types/Views";
 import { updateView } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
+import Toast from "../Toast";
 
 export default function DefaultViewSettings() {
   const theme = useContext(ThemeContext).theme;
@@ -42,11 +43,7 @@ export default function DefaultViewSettings() {
           </button>
         </div>
       </div>
-      {showToast && (
-        <div className="fixed right-4.5 bottom-4.5 bg-[rgba(0, 0, 0, 0.55)] border border-black backdrop-blur-[10px] py-3 px-3.5 rounded-2xl max-w-90 leading-[1.35] text-primary">
-          Theme is changed successfully.
-        </div>
-      )}
+      {showToast && <Toast title=" View is changed successfully." />}
     </section>
   );
 }

@@ -8,6 +8,7 @@ import Button from "../Button";
 import { EMAIL_REGX, PASSWORD_REGX } from "~/services/validation";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
+import Toast from "../Toast";
 
 export default function SignUp() {
   const theme = useContext(ThemeContext).theme;
@@ -171,11 +172,7 @@ export default function SignUp() {
 
         <Button content="Submit" className="col-span-1 md:col-span-2" />
       </form>
-      {showToast && (
-        <div className="fixed right-4.5 bottom-4.5 bg-[rgba(0, 0, 0, 0.55)] border border-black backdrop-blur-[10px] py-3 px-3.5 rounded-2xl max-w-90 leading-[1.35] text-primary">
-          Account is created successfully.
-        </div>
-      )}
+      {showToast && <Toast title="Account is created successfully." />}
     </div>
   );
 }
