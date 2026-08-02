@@ -21,9 +21,6 @@ export default function TasksColumn({
 
   const style = `bg-linear-to-b ${theme === "Light" ? "via-white to-white" : "via-bg-surface-dark to-bg-surface-dark"} border-t-2 rounded-2xl p-4 shadow-sm `;
 
-  // const style =
-  //   "bg-linear-to-b via-white to-white border-t-2 rounded-2xl p-4 shadow-sm ";
-
   const completedStyle = style + "from-green-500/10 border-green-500";
 
   const inProgressStyle = style + "from-blue-500/10 border-blue-500";
@@ -61,7 +58,7 @@ export default function TasksColumn({
         ))}
         <button
           className={`w-full font-bold text-primary ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"}
-           border rounded-btn mt-2 cursor-pointer hover:opacity-70 duration-200`}
+           border rounded-btn mt-2 cursor-pointer hover:opacity-70 duration-200 p-2`}
           onClick={onAdd}
         >
           + Add Task
