@@ -5,10 +5,10 @@ import { getCookie } from "~/services/cookiesService";
 import { getUserById } from "~/services/indexedDB/userService";
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const cookieUserId = getCookie("userId");
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    const cookieUserId = getCookie("userId");
     if (!cookieUserId) return;
 
     const id = parseInt(cookieUserId);
@@ -23,7 +23,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       }
     }
     setUserProvider();
-  }, [cookieUserId]);
+  });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

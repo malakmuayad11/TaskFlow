@@ -1,6 +1,5 @@
 export function createLoggedInUserCookie(userId: number) {
-  document.cookie =
-    "userId=" + userId.toString() + "; path=/dashboard;max-age=604800";
+  document.cookie = "userId=" + userId.toString() + "; path=/;max-age=604800";
   // The user stay logged-in for 7 days
 }
 
@@ -19,6 +18,5 @@ export function getCookie(cookieName: string) {
 }
 
 export function deleteCookies(cookieName: string) {
-  document.cookie =
-    "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/dashboard";
+  document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 }
