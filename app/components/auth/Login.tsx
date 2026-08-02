@@ -8,10 +8,10 @@ import { createLoggedInUserCookie } from "~/services/cookiesService";
 import Input from "../Input";
 import { EMAIL_REGX } from "~/services/validation";
 import Button from "../Button";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const theme = useContext(ThemeContext).theme;
   const email = useRef<HTMLInputElement | null>(null);
   const password = useRef<HTMLInputElement | null>(null);
   const [correctCredentials, setCorrectCredentials] = useState<boolean>(true);
@@ -43,12 +43,16 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-slate-50 px-4">
+    <div
+      className={`flex justify-center items-center min-h-screen w-full ${theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"} px-4`}
+    >
       <form
         onSubmit={login}
-        className="grid grid-cols-1 gap-2 w-full max-w-xl bg-bg-main p-2 md:p-4 border-border-color border rounded-btn shadow-xl"
+        className={`grid grid-cols-1 gap-2 w-full max-w-xl ${theme === "Light" ? " bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} p-2 md:p-4 border rounded-btn shadow-xl`}
       >
-        <h2 className="text-2xl col-span-1 md:text-4xl font-semibold">
+        <h2
+          className={`text-2xl col-span-1 md:text-4xl font-semibold ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
+        >
           Login To Your Account
         </h2>
         <div
@@ -66,6 +70,7 @@ export default function Login() {
           validationMsg="Enter a valid email"
           labelName="Email:"
           ref={email}
+          className={`${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
         />
         <Input inputType="password" labelName="Password:" ref={password} />
         <Button content="Login" className="mt-1" />

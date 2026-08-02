@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import type { FormEvent } from "react";
 import { addUser } from "../../services/indexedDB/userService";
 import { useNavigate } from "react-router";
@@ -7,8 +7,10 @@ import FileInput from "../FileInput";
 import Button from "../Button";
 import { EMAIL_REGX, PASSWORD_REGX } from "~/services/validation";
 import { useToast } from "~/hooks/useToast";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function SignUp() {
+  const theme = useContext(ThemeContext).theme;
   const firstName = useRef<HTMLInputElement | null>(null);
   const lastName = useRef<HTMLInputElement | null>(null);
   const email = useRef<HTMLInputElement | null>(null);
@@ -72,12 +74,16 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-slate-50 px-4">
+    <div
+      className={`flex justify-center items-center min-h-screen w-full ${theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"} px-4`}
+    >
       <form
         onSubmit={signUp}
-        className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full max-w-xl bg-bg-main p-2 md:p-4 border-border-color border rounded-btn shadow-xl"
+        className={`grid grid-cols-1 md:grid-cols-2 gap-2 w-full max-w-xl ${theme === "Light" ? "bg-bg-main border-border-color" : "bg-bg-surface-dark border-border-color-dark"} p-2 md:p-4 border rounded-btn shadow-xl`}
       >
-        <h2 className="text-2xl col-span-1 md:col-span-2 md:text-4xl font-semibold">
+        <h2
+          className={`text-2xl col-span-1 md:col-span-2 md:text-4xl font-semibold ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
+        >
           Create Your Account
         </h2>
 

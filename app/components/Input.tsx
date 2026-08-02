@@ -55,7 +55,9 @@ export default function Input({
 
   return (
     <InputWrapper className={wrapperClassName ?? ""}>
-      <div className="flex justify-between">
+      <div
+        className={`flex justify-between ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
+      >
         <label>
           {labelName}
           {isRequired && <span className="text-red-500">*</span>}
@@ -65,7 +67,7 @@ export default function Input({
         </p>
       </div>
       <input
-        className={`border-[1.75px] ${isValid ? (theme === "Light" ? "border-border-color bg-primary-light" : "border-border-color-dark bg-primary-dark") : "border-red-500"} rounded-btn p-1 ${isValid ? "focus:outline-primary" : "focus:outline-red-500"} ${
+        className={`border-[1.75px] ${isValid ? (theme === "Light" ? "border-border-color bg-primary-light text-primary-dark" : "border-border-color-dark bg-primary-dark text-primary-light") : "border-red-500"} rounded-btn p-1 ${isValid ? "focus:outline-primary" : "focus:outline-red-500"} ${
           className ?? ""
         }`}
         ref={ref}

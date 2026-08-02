@@ -1,4 +1,5 @@
-import { useState, type Ref } from "react";
+import { useContext, useState, type Ref } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
 
 type FileInputProps = {
   accept?: string;
@@ -17,6 +18,7 @@ export default function FileInput({
   labelName,
   wrapperClassName,
 }: FileInputProps) {
+  const theme = useContext(ThemeContext).theme;
   const [img, setImg] = useState("app/assets/profilePicturePlaceholder.svg");
 
   function handleInputChange(
@@ -29,7 +31,12 @@ export default function FileInput({
 
   return (
     <div
-      className={` w-full flex items-center justify-between rounded-btn border border-border-color bg-primary-light p-3 ${wrapperClassName ?? ""}`}
+      className={`w-full flex items-center justify-between rounded-btn border
+         ${
+           theme === "Light"
+             ? " border-border-color bg-primary-light"
+             : " border-border-color-dark bg-primary-dark"
+         } p-3 ${wrapperClassName ?? ""}`}
     >
       <label
         htmlFor="profileInput"
@@ -50,7 +57,7 @@ export default function FileInput({
       />
 
       <img
-        className="h-16 w-16 rounded-full border-2 border-border-color object-cover shadow-md"
+        className={`h-16 w-16 rounded-full border-2 border-border-color object-cover shadow-md`}
         src={img}
         alt="User avatar"
       />
