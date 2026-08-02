@@ -14,7 +14,7 @@ export default function DeleteAllTasksSettings({
         <p
           className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
         >
-          This action cannot be done
+          This action cannot be undone
         </p>
         <button
           className="bg-red-100 text-red-500 border border-red-500 rounded-btn p-1 -translate-y-3 cursor-pointer hover:opacity-90"
