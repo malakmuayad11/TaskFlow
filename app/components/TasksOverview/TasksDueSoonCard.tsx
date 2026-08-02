@@ -2,14 +2,24 @@ import { useContext } from "react";
 import type { Task } from "../../types/Task";
 import TaskItem from "../Tasks/TaskItem";
 import { ThemeContext } from "~/context/ThemeContext";
+import { paginateArray } from "~/services/paginationService";
 const now = Date.now();
 
 export default function TasksDueSoonCard({ tasks }: { tasks: Task[] }) {
   const theme = useContext(ThemeContext).theme;
 
-  const dueSoonTasks = tasks.filter(
-    (task) => task.dueDate.getTime() - now <= 3 * 60 * 60 * 24 * 1000,
+  const now = new Date();
+
+  const dueSoonTasks = paginateArray(
+    tasks.filter((task) => {
+      const diff = task.dueDate.getTime() - now.getTime();
+
+      return diff > 0 && diff <= 3 * 24 * 60 * 60 * 1000;
+    }),
+    1,
+    3,
   );
+
   return (
     <section
       className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border rounded-btn p-2 overflow-y-auto hover:shadow-lg duration-200`}

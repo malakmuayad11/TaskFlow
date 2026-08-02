@@ -32,7 +32,6 @@ export default function Login() {
         setCorrectCredentials(true);
         setUser?.(user);
         createLoggedInUserCookie(user.userId);
-        // there is an error with the login failed message
         navigator("/dashboard");
       } else {
         setCorrectCredentials(false);
