@@ -107,3 +107,77 @@ export async function getUserById(userId: number): Promise<User> {
     };
   });
 }
+
+export async function updateUser(user: Omit<User, "password">): Promise<void> {
+  const db = await getDB();
+
+  return new Promise(async (resolve, reject) => {
+    if (!db) {
+      reject(new Error("Database is not initialized."));
+      return;
+    }
+
+    try {
+      await getUserById(user.userId);
+    } catch {
+      reject(new Error("User with id " + user.userId + " is not found"));
+      return;
+    }
+
+    if (await getUser(user.email)) {
+      reject(new Error("User with email " + user.email + " already exists."));
+      return;
+    }
+
+    const tx = db.transaction("users", "readwrite");
+    const store = tx.objectStore("users");
+    const updateRequest = store.put(user);
+
+    updateRequest.onsuccess = () => {
+      console.log("User updated!");
+      resolve();
+    };
+
+    updateRequest.onerror = () => {
+      reject(updateRequest.error ?? new Error("Error updating user."));
+    };
+  });
+}
+
+export async function updateUserPasswword(
+  userId: number,
+  password: string,
+): Promise<void> {
+  const db = await getDB();
+  let user = null;
+
+  return new Promise(async (resolve, reject) => {
+    if (!db) {
+      reject(new Error("Database is not initialized."));
+      return;
+    }
+
+    try {
+      user = await getUserById(userId);
+    } catch {
+      reject(new Error("User with id " + userId + " is not found"));
+      return;
+    }
+
+    const tx = db.transaction("users", "readwrite");
+    const store = tx.objectStore("users");
+    const updateRequest = store.put({
+      ...user,
+      password: await hashPassword(password),
+    });
+
+    updateRequest.onsuccess = () => {
+      console.log("User password updated!");
+      resolve();
+    };
+
+    updateRequest.onerror = () => {
+      reject(updateRequest.error ?? new Error("Error updating user password."));
+    };
+  });
+}

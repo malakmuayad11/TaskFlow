@@ -2,6 +2,7 @@ import Preferences from "../components/settings/Preferences";
 import DataManagement from "../components/settings/DataManagement";
 import { useContext } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
+import ProfileDataSettings from "~/components/settings/ProfileDataSettings";
 
 export default function Settings() {
   const theme = useContext(ThemeContext).theme;
@@ -13,6 +14,7 @@ export default function Settings() {
       <h2 className="text-xl font-bold">Settings</h2>
       <Preferences />
       <DataManagement />
+      <ProfileDataSettings />
     </section>
   );
 }

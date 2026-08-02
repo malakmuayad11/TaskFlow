@@ -49,7 +49,11 @@ export default function Header({
             alt={theme === "Dark" ? "Light mode icon" : "Dark mode icon"}
             loading="eager"
           />
-          <span>|</span>
+          <span
+            className={`${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
+          >
+            |
+          </span>
         </button>
         <div className="flex items-center -gap-1">
           <img

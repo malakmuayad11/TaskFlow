@@ -21,6 +21,7 @@ type InputProps = {
   className?: string;
   wrapperClassName?: string;
   placeholder?: string;
+  defaultValue?: string;
 };
 
 export default function Input({
@@ -37,45 +38,69 @@ export default function Input({
   className,
   wrapperClassName,
   placeholder,
+  defaultValue,
 }: InputProps) {
   const theme = useContext(ThemeContext).theme;
   const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleValidation(
-    e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
-  ) {
-    const valid =
-      (!isRequired || e.target.value !== "") &&
-      (!validationRegex || validationRegex.test(e.target.value)) &&
-      (!onValidate || onValidate());
+  function handleValidation(e: React.ChangeEvent<HTMLInputElement>) {
+    let message = "";
+
+    if (isRequired && e.target.value === "") {
+      message = "This field is required";
+    } else if (validationRegex && !validationRegex.test(e.target.value)) {
+      message = validationMsg ?? "Invalid value";
+    } else if (onValidate && !onValidate()) {
+      message = validationMsg ?? "Invalid value";
+    }
+
+    const valid = message === "";
 
     setIsValid(valid);
+    setErrorMessage(message);
     onValidationChange?.(valid);
   }
 
   return (
     <InputWrapper className={wrapperClassName ?? ""}>
       <div
-        className={`flex justify-between ${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
+        className={`flex justify-between ${
+          theme === "Light" ? "text-primary-dark" : "text-primary-light"
+        }`}
       >
         <label>
           {labelName}
           {isRequired && <span className="text-red-500">*</span>}
         </label>
+
         <p className={`${isValid ? "hidden" : "text-red-500 text-sm"}`}>
-          {isValid ? "This field is required" : validationMsg}
+          {errorMessage}
         </p>
       </div>
+
       <input
-        className={`border-[1.75px] ${isValid ? (theme === "Light" ? "border-border-color bg-primary-light text-primary-dark" : "border-border-color-dark bg-primary-dark text-primary-light") : "border-red-500"} rounded-btn p-1 ${isValid ? "focus:outline-primary" : "focus:outline-red-500"} ${
-          className ?? ""
-        }`}
+        className={`
+          border-[1.75px]
+          ${
+            isValid
+              ? theme === "Light"
+                ? "border-border-color bg-primary-light text-primary-dark"
+                : "border-border-color-dark bg-primary-dark text-primary-light"
+              : "border-red-500"
+          }
+          rounded-btn
+          p-1
+          ${isValid ? "focus:outline-primary" : "focus:outline-red-500"}
+          ${className ?? ""}
+        `}
         ref={ref}
         type={inputType}
         {...(accept && { accept })}
         {...(isHidden && { hidden: true })}
-        onChange={(e) => handleValidation(e)}
+        onChange={handleValidation}
         placeholder={placeholder}
+        defaultValue={defaultValue}
       />
     </InputWrapper>
   );
