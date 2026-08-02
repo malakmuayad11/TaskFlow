@@ -3,11 +3,16 @@ import TasksByPriorityCard from "./TasksByPriorityCard";
 import TasksDueSoonCard from "./TasksDueSoonCard";
 import { TasksContext } from "../../context/TasksContext";
 import { useContext } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function TasksOverview() {
   const tasks = useContext(TasksContext).tasks;
+  const theme = useContext(ThemeContext).theme;
+
   return (
-    <section className="mt-1.5 border border-border-color rounded-btn p-2">
+    <section
+      className={`mt-1.5 border ${theme === "Light" ? "border-border-color" : "border-border-color-dark"} rounded-btn p-2`}
+    >
       <h4 className="mb-1.5 text-xl font-semibold">Tasks Overview</h4>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
         <TasksCompletionCard tasks={tasks} />

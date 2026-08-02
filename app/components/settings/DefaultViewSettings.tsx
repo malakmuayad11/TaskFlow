@@ -3,8 +3,10 @@ import { ViewContext } from "../../context/ViewContext";
 import type { Views } from "~/types/Views";
 import { updateView } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function DefaultViewSettings() {
+  const theme = useContext(ThemeContext).theme;
   const setView = useContext(ViewContext).setView;
   const [showToast, setShowToast] = useState(false);
 
@@ -20,7 +22,9 @@ export default function DefaultViewSettings() {
     <section className="mt-2">
       <h4 className="font-medium">Default View</h4>
       <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
-        <p className="font-sm text-text-secondary">
+        <p
+          className={`font-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+        >
           Choose your default tasks view
         </p>
         <div className="flex gap-1 mt-1 md:w-40">

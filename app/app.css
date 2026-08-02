@@ -6,6 +6,7 @@
   --color-primary: #5850ec;
   --color-primary-hover: #4338ca;
   --color-primary-light: #eef2ff;
+  --color-primary-dark: #1e293b; /* for dark mode */
 
   /* Semantic Theme Tokens (Defaults to Light Mode) */
   --color-bg-main: #f8fafc;
@@ -13,6 +14,13 @@
   --color-border-color: #e2e8f0;
   --color-text-primary: #0f172a;
   --color-text-secondary: #64748b;
+
+  /* Theme Tokens - Dark Mode */
+  --color-bg-main-dark: #0b0f17;
+  --color-bg-surface-dark: #111827;
+  --color-border-color-dark: #1f2937;
+  --color-text-primary-dark: #f9fafb;
+  --color-text-secondary-dark: #9ca3af;
 
   /* Fonts & Radius */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -34,8 +42,12 @@
   --animate-slide-down: slide-down 1.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
 body {
-  @apply text-text-primary;
+  /* @apply text-text-primary; */
 }
 
 /* 2. Override Semantic Tokens in Dark Mode */

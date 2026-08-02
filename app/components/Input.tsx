@@ -1,5 +1,11 @@
-import { useState, type InputHTMLAttributes, type Ref } from "react";
+import {
+  useContext,
+  useState,
+  type InputHTMLAttributes,
+  type Ref,
+} from "react";
 import InputWrapper from "./InputWrapper";
+import { ThemeContext } from "~/context/ThemeContext";
 
 type InputProps = {
   inputType: InputHTMLAttributes<HTMLInputElement>["type"];
@@ -32,6 +38,7 @@ export default function Input({
   wrapperClassName,
   placeholder,
 }: InputProps) {
+  const theme = useContext(ThemeContext).theme;
   const [isValid, setIsValid] = useState(true);
 
   function handleValidation(
@@ -58,12 +65,11 @@ export default function Input({
         </p>
       </div>
       <input
-        className={`border-[1.75px] ${isValid ? "border-border-color" : "border-red-500"} rounded-btn bg-primary-light p-1 ${isValid ? "focus:outline-primary" : "focus:outline-red-500"} ${
+        className={`border-[1.75px] ${isValid ? (theme === "Light" ? "border-border-color bg-primary-light" : "border-border-color-dark bg-primary-dark") : "border-red-500"} rounded-btn p-1 ${isValid ? "focus:outline-primary" : "focus:outline-red-500"} ${
           className ?? ""
         }`}
         ref={ref}
         type={inputType}
-        // {...(isRequired && { required: true })}
         {...(accept && { accept })}
         {...(isHidden && { hidden: true })}
         onChange={(e) => handleValidation(e)}

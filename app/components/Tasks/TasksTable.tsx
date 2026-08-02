@@ -1,5 +1,7 @@
 import TaskRow from "./TaskRow";
 import type { Task } from "../../types/Task";
+import { useContext } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
 
 type TasksTableProps = {
   tasks: Task[];
@@ -12,9 +14,10 @@ export default function TasksTable({
   onDelete,
   onEdit,
 }: TasksTableProps) {
+  const theme = useContext(ThemeContext).theme;
   return (
     <table className="w-full">
-      <thead className="">
+      <thead>
         <tr className="text-left text-m font-medium">
           <th className="pb-4">Task</th>
           <th className="pb-4">Status</th>
@@ -24,7 +27,9 @@ export default function TasksTable({
         </tr>
       </thead>
 
-      <tbody className="bg-bg-surface border-border-color border">
+      <tbody
+        className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border`}
+      >
         {tasks.map((task) => (
           <TaskRow
             key={task.taskId}

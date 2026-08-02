@@ -2,8 +2,10 @@ import TaskItem from "../Tasks/TaskItem";
 import type { Task } from "../../types/Task";
 import { TasksContext } from "../../context/TasksContext";
 import { useContext } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function RecentTasksCard() {
+  const theme = useContext(ThemeContext).theme;
   const tasks = useContext(TasksContext).tasks;
 
   function getRecentTasks(): Task[] {
@@ -20,7 +22,9 @@ export default function RecentTasksCard() {
   }
 
   return (
-    <section className="bg-bg-surface border border-border-color rounded-btn p-2 mt-2 hover:shadow-lg duration-200">
+    <section
+      className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border rounded-btn p-2 mt-2 hover:shadow-lg duration-200`}
+    >
       <table className="w-full">
         <thead>
           <tr>

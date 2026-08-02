@@ -6,8 +6,10 @@ import { UserContext } from "~/context/UserContext";
 import { useState } from "react";
 import { useToast } from "~/hooks/useToast";
 import { deleteAllUserTasks } from "~/services/indexedDB/taskService";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function DataManagement() {
+  const theme = useContext(ThemeContext).theme;
   const userId = useContext(UserContext)?.user?.userId;
   const [isError, setIsError] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
@@ -52,7 +54,9 @@ export default function DataManagement() {
           <div className={isError ? "block text-red-600" : "hidden"}>
             An error occurred while deleting tasks. Please try again.
           </div>
-          <section className="flex flex-col gap-1 border border-border-color rounded-btn p-2 bg-bg-surface">
+          <section
+            className={`flex flex-col gap-1 border ${theme === "Light" ? "border-border-color bg-bg-surface" : "border-border-color-dark bg-bg-surface-dark"} rounded-btn p-2`}
+          >
             <h3 className="text-lg font-semibold">Data Management</h3>
 
             <ExportDataSettings />

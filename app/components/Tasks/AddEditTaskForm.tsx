@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import Input from "../Input";
 import Button from "../Button";
+import { ThemeContext } from "~/context/ThemeContext";
 
 type AddEditTaskFormProps = {
   task?: Task;
@@ -18,6 +19,7 @@ export default function AddEditTaskForm({
   onSave,
   onCancel,
 }: AddEditTaskFormProps) {
+  const theme = useContext(ThemeContext).theme;
   const titleRef = useRef<HTMLInputElement | null>(null);
   const [status, setStatus] = useState<TaskStatus>(task?.status ?? "Todo");
   const [priority, setPriority] = useState<TaskPriority>(
@@ -62,7 +64,7 @@ export default function AddEditTaskForm({
     <div className="mx-auto container">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-1 bg-bg-surface p-2 border border-border-color rounded-btn"
+        className={`flex flex-col gap-1${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} p-2 border rounded-btn`}
       >
         <h2 className="text-xl font-bold">
           {isAddMode ? "Add New Task" : "Edit Task"}
@@ -78,7 +80,7 @@ export default function AddEditTaskForm({
             Status<span className="text-red-500">*</span>
           </label>
           <select
-            className="border border-border-color rounded-btn p-2 bg-primary-light focus:outline-primary"
+            className={`border ${theme === "Light" ? "border-border-color bg-primary-light" : "border-border-color-dark bg-primary-dark"} rounded-btn p-2  focus:outline-primary`}
             required
             value={status}
             onChange={(e) => setStatus(e.target.value as Task["status"])}
@@ -93,7 +95,7 @@ export default function AddEditTaskForm({
             Priority<span className="text-red-500">*</span>
           </label>
           <select
-            className="border border-border-color rounded-btn p-2 bg-primary-light focus:outline-primary"
+            className={`border ${theme === "Light" ? "border-border-color bg-primary-light" : "border-border-color-dark bg-primary-dark"} rounded-btn p-2 focus:outline-primary`}
             required
             value={priority}
             onChange={(e) => setPriority(e.target.value as Task["priority"])}
@@ -106,7 +108,7 @@ export default function AddEditTaskForm({
         <Input inputType="date" labelName="Due Date" ref={dueDateRef} />
         <div className="flex gap-1 mt-2">
           <button
-            className={`bg-bg-main hover:bg-bg-surface/50 text-text-primary rounded-btn py-3 px-6 hover:cursor-pointer w-full text-xl hover:-translate-y-1 transition-transform duration-300 border border-border-color`}
+            className={`${theme === "Light" ? "bg-bg-main hover:bg-bg-surface/50 text-text-primary border-border-color" : "bg-bg-main-dark hover:bg-bg-surface-dark/0 text-text-primary-dark border-border-color-dark"} rounded-btn py-3 px-6 hover:cursor-pointer w-full text-xl hover:-translate-y-1 transition-transform duration-300 border`}
             type="button"
             onClick={onCancel}
           >

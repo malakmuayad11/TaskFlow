@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import collapseIcon from "../assets/collapse-icon.svg";
+import collapseIconDark from "../assets/collapse-icon-dark.svg";
+import collapseIconLight from "../assets/collapse-icon-light.svg";
 import lightModeIcon from "../assets/light-mode-icon.svg";
 import darkModeIcon from "../assets/dark-mode-icon.svg";
 import { ThemeContext } from "~/context/ThemeContext";
+import { updateTheme } from "~/services/localStorageService";
 
 export default function Header({
   onCollapseClick,
@@ -15,11 +17,16 @@ export default function Header({
   const { theme, setTheme } = useContext(ThemeContext);
 
   function toggleTheme() {
-    setTheme(theme === "Light" ? "Dark" : "Light");
+    const newTheme = theme === "Light" ? "Dark" : "Light";
+
+    setTheme(newTheme);
+    updateTheme(newTheme);
   }
 
   return (
-    <header className="bg-bg-main relative flex gap-2 justify-between mt-0.5 border-b border-gray-500 p-1">
+    <header
+      className={`${theme === "Light" ? "bg-bg-main border-gray-500" : "bg-bg-surface-dark border-border-color-dark"} relative flex gap-2 justify-between mt-0.5 border-b p-1`}
+    >
       <div className="flex justify-evenly shrink-0 gap-0.5 mb-0.5">
         <button
           id="btnCollapse"
@@ -28,7 +35,7 @@ export default function Header({
           onClick={onCollapseClick}
         >
           <img
-            src={collapseIcon}
+            src={theme === "Light" ? collapseIconDark : collapseIconLight}
             alt="Collapse icon"
             className="h-7 w-7 pr-1"
           />
@@ -50,7 +57,11 @@ export default function Header({
             alt="User Avatar"
             className="object-cover rounded-full w-8 h-8"
           />
-          <p className="text-center text-sm">{fullName ?? "Unknown"}</p>
+          <p
+            className={`text-center text-sm ${theme === "Light" ? "text-text-primary" : "text-text-primary-dark"}`}
+          >
+            {fullName ?? "Unknown"}
+          </p>
         </div>
       </div>
     </header>

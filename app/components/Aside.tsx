@@ -10,7 +10,9 @@ import tasksIconLight from "../assets/tasks-icon-light.svg";
 import tasksIconDark from "../assets/tasks-icon-dark.svg";
 import settingsIconLight from "../assets/settings-icon-light.svg";
 import settingsIconDark from "../assets/settings-icon-dark.svg";
-import logoutIcon from "../assets/logout-icon.svg";
+import logoutIconDark from "../assets/logout-icon-dark.svg";
+import logoutIconLight from "../assets/logout-icon-light.svg";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function Aside({
   isCollapsed,
@@ -20,6 +22,7 @@ export default function Aside({
   onCollapseClick: () => void;
 }) {
   const setUser = useContext(UserContext)?.setUser;
+  const theme = useContext(ThemeContext).theme;
   const navigator = useNavigate();
 
   function logout() {
@@ -32,7 +35,7 @@ export default function Aside({
     <>
       <aside
         id="sideMenu"
-        className={`flex flex-col row-span-2 overflow-hidden border-r border-border-color fixed md:static top-0 left-0 h-screen bg-bg-surface text-text-primary z-50 transform transition-all duration-300 ease-in-out ${
+        className={`flex flex-col row-span-2 overflow-hidden border-r fixed md:static top-0 left-0 h-screen ${theme === "Light" ? "bg-bg-surface text-text-primary border-border-color" : "bg-bg-surface-dark text-text-primary-dark border-border-color-dark"} z-50 transform transition-all duration-300 ease-in-out ${
           isCollapsed ? "-translate-x-full md:translate-x-0" : "translate-x-0"
         }`}
       >
@@ -54,19 +57,23 @@ export default function Aside({
               to="/dashboard"
               content="Dashboard"
               activeImgSrc={homeIconLight}
-              inActiveImgSrc={homeIconDark}
+              inActiveImgSrc={theme === "Light" ? homeIconDark : homeIconLight}
             />
             <Li
               to="/dashboard/tasks"
               content="Tasks"
               activeImgSrc={tasksIconLight}
-              inActiveImgSrc={tasksIconDark}
+              inActiveImgSrc={
+                theme === "Light" ? tasksIconDark : tasksIconLight
+              }
             />
             <Li
               to="/dashboard/settings"
               content="Settings"
               activeImgSrc={settingsIconLight}
-              inActiveImgSrc={settingsIconDark}
+              inActiveImgSrc={
+                theme === "Light" ? settingsIconDark : settingsIconLight
+              }
             />
           </ul>
         </nav>
@@ -74,7 +81,11 @@ export default function Aside({
           className="items-end flex gap-1 ml-3 mb-2 hover:cursor-pointer"
           onClick={logout}
         >
-          <img src={logoutIcon} alt="Logout icon" loading="eager" />
+          <img
+            src={theme === "Light" ? logoutIconDark : logoutIconLight}
+            alt="Logout icon"
+            loading="eager"
+          />
           Logout
         </button>
       </aside>

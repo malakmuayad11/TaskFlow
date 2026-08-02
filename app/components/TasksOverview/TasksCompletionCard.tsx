@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import type { Task } from "../../types/Task";
+import { ThemeContext } from "~/context/ThemeContext";
 
 export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
+  const theme = useContext(ThemeContext).theme;
+
   const completionPercentage =
     tasks.length === 0
       ? 0
@@ -28,7 +32,9 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
   const offset = circumference - (completionPercentage / 100) * circumference;
 
   return (
-    <section className="items-center bg-bg-surface border border-border-color rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200">
+    <section
+      className={`items-center ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200`}
+    >
       <h5 className="self-start text-m font-medium">Tasks Completion</h5>
       <div className="flex justify-center items-center gap-5">
         <div>
@@ -59,7 +65,11 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
           />
         </svg>
       </div>
-      <p className="text-sm text-text-secondary">{feedback}</p>
+      <p
+        className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+      >
+        {feedback}
+      </p>
     </section>
   );
 }

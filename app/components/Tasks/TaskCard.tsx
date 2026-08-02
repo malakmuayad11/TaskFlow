@@ -1,6 +1,8 @@
 import type { TaskPriority } from "../../types/Task";
 import calendarIcon from "../../assets/calendar-icon.svg";
 import Badge from "../Badge";
+import { useContext } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
 
 type TaskCardProps = {
   title: string;
@@ -9,6 +11,7 @@ type TaskCardProps = {
 };
 
 export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
+  const theme = useContext(ThemeContext).theme;
   const parsedDueDate = dueDate instanceof Date ? dueDate : new Date(dueDate);
   const formattedDate = Number.isNaN(parsedDueDate.getTime())
     ? "Invalid date"
@@ -19,7 +22,13 @@ export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
       });
 
   return (
-    <section className="flex flex-col gap-2 bg-bg-surface p-2 border border-border-color rounded-btn hover:shadow-lg duration-200 mb-2">
+    <section
+      className={`flex flex-col gap-2 ${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark"
+      } p-2 border rounded-btn hover:shadow-lg duration-200 mb-2`}
+    >
       <h3 className="text-m font-bold">{title}</h3>
       <div className="flex gap-0.5">
         <img
@@ -27,7 +36,9 @@ export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
           src={calendarIcon}
           alt="Calendar icon"
         />
-        <p className="text-sm text-text-secondary translate-y-1.5">
+        <p
+          className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"} translate-y-1.5`}
+        >
           {formattedDate}
         </p>
         <Badge variant={priority} />

@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { NavLink } from "react-router";
+import { ThemeContext } from "~/context/ThemeContext";
 type LiProps = {
   to: string;
   content: string;
@@ -12,6 +14,8 @@ export default function Li({
   activeImgSrc,
   inActiveImgSrc,
 }: LiProps) {
+  const theme = useContext(ThemeContext).theme;
+
   return (
     <li>
       <NavLink
@@ -19,8 +23,8 @@ export default function Li({
         end
         className={({ isActive }) =>
           isActive
-            ? "flex items-center gap-2 text-primary-light font-medium p-4 bg-primary rounded-md hover:cursor-pointer md:pl-3"
-            : "flex items-center gap-2 text-text-primary font-medium p-4 rounded-md hover:cursor-pointer md:pl-3 hover:bg-primary/45 hover:text-primary-light"
+            ? `flex items-center gap-2 ${theme === "Light" ? "text-primary-light" : "text-text-primary-dark"} font-medium p-4 bg-primary rounded-md hover:cursor-pointer md:pl-3`
+            : `flex items-center gap-2 ${theme === "Light" ? "text-text-primary" : "text-text-primary-dark"} font-medium p-4 rounded-md hover:cursor-pointer md:pl-3 hover:bg-primary/45 hover:text-primary-light`
         }
       >
         {({ isActive }) => (

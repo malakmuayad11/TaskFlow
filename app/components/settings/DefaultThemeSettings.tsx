@@ -5,7 +5,7 @@ import { updateTheme } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
 
 export default function DefaultThemeSettings() {
-  const setTheme = useContext(ThemeContext).setTheme;
+  const { theme, setTheme } = useContext(ThemeContext);
   const [showToast, setShowToast] = useState(false);
 
   useToast(showToast, setShowToast);
@@ -17,15 +17,19 @@ export default function DefaultThemeSettings() {
   }
 
   return (
-    <section className="border-b border-b-border-color">
+    <section
+      className={`border-b ${theme === "Light" ? "border-b-border-color" : "border-b-border-color-dark"}`}
+    >
       <h4 className="font-medium">Theme</h4>
       <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
-        <p className="font-sm text-text-secondary">
+        <p
+          className={`font-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+        >
           Choose your preferred theme
         </p>
         <div className="flex gap-1 md:w-40">
           <button
-            className="flex-1 bg-primary text-primary-light rounded-btn p-1 -translate-y-1.5 cursor-pointer hover:opacity-90"
+            className={`flex-1 bg-primary text-primary-light rounded-btn p-1 -translate-y-1.5 cursor-pointer hover:opacity-90`}
             onClick={() => handleBtnClick("Light")}
           >
             Light

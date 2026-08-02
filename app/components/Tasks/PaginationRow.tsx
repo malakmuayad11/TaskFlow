@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ThemeContext } from "~/context/ThemeContext";
+
 export default function PaginationRow({
   totalTasks,
   onclick,
@@ -5,6 +8,7 @@ export default function PaginationRow({
   totalTasks: number;
   onclick: (pageNum: number) => void;
 }) {
+  const theme = useContext(ThemeContext).theme;
   const totalButtons = Math.ceil(totalTasks / 5);
 
   const buttons = Array.from({ length: totalButtons }, (_, index) => (
@@ -20,7 +24,9 @@ export default function PaginationRow({
   const showingTasksNum = totalTasks < 5 ? totalTasks : 5;
 
   return (
-    <section className="bg-bg-surface flex justify-between items-center border border-border-color p-2">
+    <section
+      className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} flex justify-between items-center border p-2`}
+    >
       <p className="text-xs">
         Showing 1 to {showingTasksNum} of {totalTasks} tasks
       </p>

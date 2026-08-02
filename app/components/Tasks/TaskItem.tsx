@@ -1,6 +1,7 @@
-import type { ReactElement } from "react";
+import { useContext, type ReactElement } from "react";
 import type { TaskStatus, TaskPriority } from "../../types/Task";
 import Badge from "../Badge";
+import { ThemeContext } from "~/context/ThemeContext";
 
 interface TaskItemProps {
   title: string;
@@ -17,6 +18,7 @@ export default function TaskItem({
   dueDate,
   additionalData,
 }: TaskItemProps) {
+  const theme = useContext(ThemeContext).theme;
   const parsedDueDate = dueDate instanceof Date ? dueDate : new Date(dueDate);
   const formattedDate = Number.isNaN(parsedDueDate.getTime())
     ? "Invalid date"
@@ -27,27 +29,22 @@ export default function TaskItem({
       });
 
   return (
-    <tr className=" border-b border-b-border-color w-full">
+    <tr
+      className={`border-b ${theme === "Light" ? "border-b-border-color" : "border-b-border-color-dark"} w-full`}
+    >
       <td className="text-sm p-2">{title}</td>
       {status && (
         <td>
           <Badge variant={status === "In Progress" ? "Progress" : status} />
         </td>
       )}
-      <td className="text-sm text-text-secondary">{formattedDate}</td>
+      <td
+        className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+      >
+        {formattedDate}
+      </td>
       <td>
         <Badge variant={priority} />
-        {/* <span
-          className={
-            priority === "High"
-              ? highPriorityClass
-              : priority === "Medium"
-                ? mediumPriorityClass
-                : lowPriorityClass
-          }
-        >
-          {priority}
-        </span> */}
       </td>
       {additionalData}
     </tr>

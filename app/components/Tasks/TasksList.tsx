@@ -1,6 +1,6 @@
 import ControlBar from "./ControlBar";
 import TasksTable from "./TasksTable";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { Task } from "../../types/Task";
 import {
   addTask,
@@ -10,7 +10,9 @@ import {
 import AddEditTaskForm from "./AddEditTaskForm";
 import PaginationRow from "./PaginationRow";
 import { paginateArray } from "../../services/paginationService";
+import { ThemeContext } from "~/context/ThemeContext";
 export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
+  const theme = useContext(ThemeContext).theme;
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [search, setSearch] = useState("");
@@ -104,7 +106,9 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
             onAdd={handleAddTask}
             onStartAdd={() => setIsAddingTask(true)}
           />
-          <div className="border border-border-color rounded-btn mt-4 p-2">
+          <div
+            className={`border ${theme === "Light" ? "border-border-color" : "border-border-color-dark"} rounded-btn mt-4 p-2`}
+          >
             <TasksTable
               tasks={displayedTasks}
               onDelete={handleDelete}
