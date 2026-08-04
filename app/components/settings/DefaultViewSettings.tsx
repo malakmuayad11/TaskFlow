@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ViewContext } from "../../context/ViewContext";
-import type { Views } from "~/types/Views";
+import type { View } from "~/types/View";
 import { updateView } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
@@ -13,7 +13,7 @@ export default function DefaultViewSettings() {
 
   useToast(showToast, setShowToast);
 
-  function handleBtnClick(value: Views) {
+  function handleBtnClick(value: View) {
     setView(value);
     updateView(value);
     setShowToast(true);

@@ -1,11 +1,11 @@
 import type { Theme } from "~/types/Theme";
-import type { Views } from "~/types/Views";
+import type { View } from "~/types/View";
 
 export function updateTheme(value: Theme) {
   localStorage.setItem("theme", value);
 }
 
-export function updateView(value: Views) {
+export function updateView(value: View) {
   localStorage.setItem("view", value);
 }
 
