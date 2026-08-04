@@ -216,7 +216,11 @@ export default function SignUp() {
           wrapperClassName="col-span-1 md:col-span-2 mb-1 mt-1"
         />
 
-        <Button content="Submit" className="col-span-1 md:col-span-2" />
+        <Button
+          content="Create account"
+          type="submit"
+          className="col-span-1 md:col-span-2z z-50"
+        />
       </form>
       {showToast && <Toast title="Account is created successfully." />}
     </div>
