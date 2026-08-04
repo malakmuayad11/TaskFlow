@@ -101,6 +101,9 @@ export default function Input({
         onChange={handleValidation}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        autoCapitalize="none"
+        autoCorrect="off"
+        spellCheck="false"
       />
     </InputWrapper>
   );
