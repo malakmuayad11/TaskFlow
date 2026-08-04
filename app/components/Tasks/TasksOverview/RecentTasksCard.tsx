@@ -1,6 +1,6 @@
-import TaskItem from "../Tasks/TaskItem";
-import type { Task } from "../../types/Task";
-import { TasksContext } from "../../context/TasksContext";
+import TaskItem from "../TaskItem";
+import type { Task } from "../../../types/Task";
+import { TasksContext } from "../../../context/TasksContext";
 import { useContext } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 

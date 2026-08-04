@@ -1,5 +1,5 @@
 import StatCard from "./StatCard";
-import { TasksContext } from "../../context/TasksContext";
+import { TasksContext } from "../../../context/TasksContext";
 import { useContext } from "react";
 import totalIcon from "../../assets/total-icon.svg";
 import completedIcon from "../../assets/completed-icon.svg";

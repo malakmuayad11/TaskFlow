@@ -1,7 +1,7 @@
 import TasksCompletionCard from "./TasksCompletionCard";
 import TasksByPriorityCard from "./TasksByPriorityCard";
 import TasksDueSoonCard from "./TasksDueSoonCard";
-import { TasksContext } from "../../context/TasksContext";
+import { TasksContext } from "../../../context/TasksContext";
 import { useContext } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 

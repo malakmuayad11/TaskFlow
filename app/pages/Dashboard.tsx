@@ -1,6 +1,6 @@
-import Statistics from "../components/statistics/Statistics";
-import RecentTasksCard from "../components/TasksOverview/RecentTasksCard";
-import TasksOverview from "../components/TasksOverview/TasksOverview";
+import Statistics from "../components/Tasks/statistics/Statistics";
+import RecentTasksCard from "../components/Tasks/TasksOverview/RecentTasksCard";
+import TasksOverview from "../components/Tasks/TasksOverview/TasksOverview";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { TasksContext } from "../context/TasksContext";

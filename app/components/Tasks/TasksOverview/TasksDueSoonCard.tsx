@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import type { Task } from "../../types/Task";
-import TaskItem from "../Tasks/TaskItem";
+import type { Task } from "../../../types/Task";
+import TaskItem from "../TaskItem";
 import { ThemeContext } from "~/context/ThemeContext";
 import { paginateArray } from "~/services/paginationService";
 const now = Date.now();

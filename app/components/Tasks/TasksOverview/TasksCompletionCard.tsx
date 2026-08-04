@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import type { Task } from "../../types/Task";
+import type { Task } from "../../../types/Task";
 import { ThemeContext } from "~/context/ThemeContext";
 
 export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {

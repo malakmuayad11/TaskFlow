@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import type { Task } from "../../types/Task";
+import type { Task } from "../../../types/Task";
 import PriorityItem from "./PriorityItem";
 import { ThemeContext } from "~/context/ThemeContext";
 
