@@ -1,9 +1,10 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Input from "../Input";
 import { EMAIL_REGX } from "~/services/validation";
 import FileInput from "../FileInput";
 import Button from "../Button";
 import {
+  getUserById,
   updateUser,
   updateUserProfile,
 } from "~/services/indexedDB/userService";
@@ -17,6 +18,7 @@ import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.sv
 
 export default function ProfileSettings() {
   const user = useContext(UserContext)?.user;
+  const setUser = useContext(UserContext)?.setUser;
   const theme = useContext(ThemeContext).theme;
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
@@ -26,6 +28,12 @@ export default function ProfileSettings() {
   const [toastMessage, setToastMessage] = useState("");
 
   useToast(showToast, setShowToast);
+
+  // useEffect(() => {
+  //   if (setUser && user) {
+  //     setUser(user);
+  //   }
+  // }, [user]);
 
   async function handleSave() {
     if (
@@ -55,21 +63,29 @@ export default function ProfileSettings() {
 
     try {
       if (user.email === emailRef.current.value) {
-        await updateUserProfile({
+        const updatedUser = {
           userId: user.userId,
           firstName: firstNameRef.current.value,
           lastName: lastNameRef.current.value,
           profilePictureURL: profilePicture,
+        };
+        await updateUserProfile(updatedUser);
+        const savedUser = await getUserById(user.userId);
+        setUser?.({
+          ...savedUser,
+          password: user.password,
         });
       } else {
-        const updatedUser: Omit<User, "password"> = {
+        const password = user.password;
+        await updateUser({
           userId: user.userId,
           firstName: firstNameRef.current.value,
           lastName: lastNameRef.current.value,
           email: emailRef.current.value,
           profilePictureURL: profilePicture,
-        };
-        await updateUser(updatedUser);
+        });
+        const savedUser = await getUserById(user.userId);
+        setUser?.({ ...savedUser, password });
       }
       setToastMessage("Profile data is updated sucessfully");
       setShowToast(true);

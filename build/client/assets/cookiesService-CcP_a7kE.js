@@ -1,0 +1,1 @@
+function e(e){document.cookie=`userId=`+e.toString()+`; path=/;max-age=604800`}function t(e){let t=document.cookie.split(`;`);for(let n of t)if(n=n.trim(),n.startsWith(e+`=`))return n.substring(e.length+1);return null}function n(e){document.cookie=`userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`}export{n,t as r,e as t};

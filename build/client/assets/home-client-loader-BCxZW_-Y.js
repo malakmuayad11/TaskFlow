@@ -1,0 +1,1 @@
+import{E as e}from"./utils-BkEaPY0J.js";import{r as t}from"./cookiesService-CcP_a7kE.js";async function n(){if(t(`userId`))throw e(`/dashboard`);return null}export{n as clientLoader};

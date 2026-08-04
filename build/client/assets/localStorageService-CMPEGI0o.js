@@ -1,0 +1,1 @@
+function e(e){localStorage.setItem(`theme`,e)}function t(e){localStorage.setItem(`view`,e)}function n(e){return localStorage.getItem(e)}export{e as n,t as r,n as t};

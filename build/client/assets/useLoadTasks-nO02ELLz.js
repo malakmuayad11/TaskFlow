@@ -1,0 +1,1 @@
+import{B as e,H as t}from"./utils-BkEaPY0J.js";import{i as n}from"./taskService-BOzIF-fi.js";var r=t(e(),1);function i(e,t){(0,r.useEffect)(()=>{async function r(){if(e)try{t(await n(e)),console.log(`Tasks are loaded`)}catch(e){console.error(`Failed to load tasks:`,e)}}r()},[e])}export{i as t};

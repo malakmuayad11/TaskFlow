@@ -1,0 +1,1 @@
+import{B as e,H as t}from"./utils-BkEaPY0J.js";var n=(0,t(e(),1).createContext)({view:`List`,setView:()=>void 0});export{n as t};

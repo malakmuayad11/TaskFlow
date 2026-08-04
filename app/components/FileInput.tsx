@@ -1,4 +1,4 @@
-import { useContext, useState, type Ref } from "react";
+import { useContext, useEffect, useState, type Ref } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 import profilePicturePlaceholder from "../assets/profilePicturePlaceholder.svg";
 import { UserContext } from "~/context/UserContext";
@@ -25,6 +25,10 @@ export default function FileInput({
   const [img, setImg] = useState(
     user?.profilePictureURL || profilePicturePlaceholder,
   );
+
+  useEffect(() => {
+    setImg(user?.profilePictureURL || profilePicturePlaceholder);
+  }, [user?.profilePictureURL]);
 
   function handleInputChange(
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,

@@ -1,0 +1,8 @@
+import{B as e,H as t}from"./utils-BkEaPY0J.js";import{t as n}from"./jsx-runtime-DIf4hgSt.js";import{t as r}from"./ThemeContext-BGcjjvPb.js";var i=t(e(),1),a=n();function o({className:e,children:t}){return(0,a.jsx)(`div`,{className:`flex flex-col gap-0.5 ${e??``}`,children:t})}function s({inputType:e,isRequired:t=!0,isHidden:n=!1,validationRegex:s,validationMsg:c,onValidate:l,onValidationChange:u,labelName:d,ref:f,accept:p,className:m,wrapperClassName:h,placeholder:g,defaultValue:_}){let v=(0,i.useContext)(r).theme,[y,b]=(0,i.useState)(!0),[x,S]=(0,i.useState)(``);function C(e){let n=``;t&&e.target.value===``?n=`This field is required`:(s&&!s.test(e.target.value)||l&&!l())&&(n=c??`Invalid value`);let r=n===``;b(r),S(n),u?.(r)}return(0,a.jsxs)(o,{className:h??``,children:[(0,a.jsxs)(`div`,{className:`flex justify-between ${v===`Light`?`text-primary-dark`:`text-primary-light`}`,children:[(0,a.jsxs)(`label`,{children:[d,t&&(0,a.jsx)(`span`,{className:`text-red-500`,children:`*`})]}),(0,a.jsx)(`p`,{className:`${y?`hidden`:`text-red-500 text-sm`}`,children:x})]}),(0,a.jsx)(`input`,{className:`
+          border-[1.75px]
+          ${y?v===`Light`?`border-border-color bg-primary-light text-primary-dark`:`border-border-color-dark bg-primary-dark text-primary-light`:`border-red-500`}
+          rounded-btn
+          p-1
+          ${y?`focus:outline-primary`:`focus:outline-red-500`}
+          ${m??``}
+        `,ref:f,type:e,...p&&{accept:p},...n&&{hidden:!0},onChange:C,placeholder:g,defaultValue:_})]})}export{s as t};

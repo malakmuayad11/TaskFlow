@@ -1,0 +1,1 @@
+var e=`/assets/logo-OVumg1hO.png`;export{e as t};

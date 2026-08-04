@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DIf4hgSt.js";var t=e();function n({content:e,onClick:n,className:r}){return(0,t.jsx)(`button`,{className:`bg-primary hover:bg-primary-hover text-primary-light rounded-btn py-3 px-6 hover:cursor-pointer w-full text-xl hover:-translate-y-1 transition-transform duration-300 ${r??``}`,onClick:n,children:e})}export{n as t};
