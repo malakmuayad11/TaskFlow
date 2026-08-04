@@ -25,7 +25,7 @@ export default function Header({
 
   return (
     <header
-      className={`${theme === "Light" ? "bg-bg-main border-gray-500" : "bg-bg-surface-dark border-border-color-dark"} relative flex gap-2 justify-between mt-0.5 border-b p-1`}
+      className={`${theme === "Light" ? "bg-bg-main border-gray-500" : "bg-bg-surface-dark border-border-color-dark"} sticky top-0 z-1000 flex gap-2 justify-between mt-0.5 border-b p-1`}
     >
       <div className="flex justify-evenly shrink-0 gap-0.5 mb-0.5">
         <button
@@ -59,10 +59,10 @@ export default function Header({
           <img
             src={user?.profilePictureURL}
             alt="User Avatar"
-            className="object-cover rounded-full w-8 h-8"
+            className="object-cover rounded-full w-6 h-6"
           />
           <p
-            className={`text-center text-sm ${theme === "Light" ? "text-text-primary" : "text-text-primary-dark"}`}
+            className={`text-center text-sm ${theme === "Light" ? "text-text-primary" : "text-text-primary-dark"} m-1`}
           >
             {fullName ?? "Unknown"}
           </p>
