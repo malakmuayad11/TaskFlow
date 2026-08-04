@@ -7,24 +7,25 @@ export async function addUser(
 ): Promise<IDBValidKey> {
   const db = await getDB();
 
-  return new Promise((resolve, reject) => {
-    if (!db) {
-      reject(new Error("Database is not initialized."));
-      return;
-    }
+  if (!db) {
+    throw new Error("Database is not initialized.");
+  }
 
+  // Hash BEFORE opening the transaction
+  const hashedPassword = await hashPassword(user.password);
+
+  return new Promise((resolve, reject) => {
     const tx = db.transaction("users", "readwrite");
     const store = tx.objectStore("users");
     const index = store.index("emailIndex");
+
     const checkRequest = index.get(user.email);
 
-    checkRequest.onsuccess = async () => {
+    checkRequest.onsuccess = () => {
       if (checkRequest.result) {
         reject(new Error("User with this email already exists"));
         return;
       }
-
-      const hashedPassword = await hashPassword(user.password);
 
       const userRecord = {
         ...user,
@@ -34,17 +35,22 @@ export async function addUser(
       const addRequest = store.add(userRecord);
 
       addRequest.onsuccess = () => {
-        console.log("User with email: " + user.email + " is added");
+        console.log("User added:", user.email);
+
         resolve(addRequest.result);
       };
 
       addRequest.onerror = () => {
-        reject(addRequest.error ?? new Error("Error adding user."));
+        reject(addRequest.error ?? new Error("Error adding user"));
       };
     };
 
     checkRequest.onerror = () => {
-      reject(checkRequest.error ?? new Error("Error checking user email."));
+      reject(checkRequest.error ?? new Error("Error checking email"));
+    };
+
+    tx.onerror = () => {
+      reject(tx.error ?? new Error("Transaction failed"));
     };
   });
 }
