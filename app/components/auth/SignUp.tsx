@@ -36,7 +36,7 @@ export default function SignUp() {
   useToast(showToast, setShowToast);
 
   async function signUp(event: FormEvent<HTMLFormElement>) {
-    // event.preventDefault();
+    event.preventDefault();
 
     // ensure all refs are available before accessing their values
     if (
