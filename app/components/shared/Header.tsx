@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import collapseIconDark from "../assets/collapse-icon-dark.svg";
 import collapseIconLight from "../assets/collapse-icon-light.svg";
 import lightModeIcon from "../assets/light-mode-icon.svg";

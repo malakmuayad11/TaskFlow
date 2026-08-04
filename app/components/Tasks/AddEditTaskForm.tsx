@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 import type { Task, TaskPriority, TaskStatus } from "../../types/Task";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../shared/Input";
+import Button from "../shared/Button";
 import { ThemeContext } from "~/context/ThemeContext";
 
 type AddEditTaskFormProps = {

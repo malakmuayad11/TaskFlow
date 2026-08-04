@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
-import Button from "~/components/Button";
+import Button from "~/components/shared/Button";
 import { ThemeContext } from "~/context/ThemeContext";
 import logo from "../assets/logo.png";
 

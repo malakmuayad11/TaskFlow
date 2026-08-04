@@ -4,7 +4,7 @@ import type { View } from "~/types/View";
 import { updateView } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 
 export default function DefaultViewSettings() {
   const theme = useContext(ThemeContext).theme;

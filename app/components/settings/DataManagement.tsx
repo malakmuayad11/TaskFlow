@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useToast } from "~/hooks/useToast";
 import { deleteAllUserTasks } from "~/services/indexedDB/taskService";
 import { ThemeContext } from "~/context/ThemeContext";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 
 export default function DataManagement() {
   const theme = useContext(ThemeContext).theme;

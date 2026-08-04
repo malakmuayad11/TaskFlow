@@ -1,11 +1,11 @@
 import { useContext, useRef, useState } from "react";
-import Input from "../Input";
+import Input from "../shared/Input";
 import { UserContext } from "~/context/UserContext";
 import { PASSWORD_REGX } from "~/services/validation";
-import Button from "../Button";
+import Button from "../shared/Button";
 import { updateUserPasswword as updateUserPassword } from "~/services/indexedDB/userService";
 import { useToast } from "~/hooks/useToast";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 import { ThemeContext } from "~/context/ThemeContext";
 
 export default function PasswordSettings() {

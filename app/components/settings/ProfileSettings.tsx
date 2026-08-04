@@ -1,15 +1,15 @@
 import { useContext, useRef, useState } from "react";
-import Input from "../Input";
+import Input from "../shared/Input";
 import { EMAIL_REGX } from "~/services/validation";
-import FileInput from "../FileInput";
-import Button from "../Button";
+import FileInput from "../shared/FileInput";
+import Button from "../shared/Button";
 import {
   getUserById,
   updateUser,
   updateUserProfile,
 } from "~/services/indexedDB/userService";
 import { UserContext } from "~/context/UserContext";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
 import { fileToBase64 } from "~/services/base64";

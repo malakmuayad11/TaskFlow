@@ -3,7 +3,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import type { Theme } from "~/types/Theme";
 import { updateTheme } from "~/services/localStorageService";
 import { useToast } from "~/hooks/useToast";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 
 export default function DefaultThemeSettings() {
   const { theme, setTheme } = useContext(ThemeContext);

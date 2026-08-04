@@ -12,7 +12,7 @@ import PaginationRow from "./PaginationRow";
 import { paginateArray } from "../../services/paginationService";
 import { ThemeContext } from "~/context/ThemeContext";
 import { useToast } from "~/hooks/useToast";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 
 export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
   const theme = useContext(ThemeContext).theme;

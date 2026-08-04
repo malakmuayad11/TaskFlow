@@ -1,7 +1,7 @@
 import TaskCard from "./TaskCard";
 import type { Task, TaskStatus } from "../../types/Task";
-import Badge from "../Badge";
-import type { Variant } from "../Badge";
+import Badge from "../shared/Badge";
+import type { Variant } from "../shared/Badge";
 import { useContext } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 

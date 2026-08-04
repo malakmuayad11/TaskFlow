@@ -1,6 +1,6 @@
 import type { TaskPriority } from "../../types/Task";
 import calendarIcon from "../../assets/calendar-icon.svg";
-import Badge from "../Badge";
+import Badge from "../shared/Badge";
 import { useContext } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 

@@ -5,9 +5,9 @@ import { hashPassword } from "../../services/HasherService";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router";
 import { createLoggedInUserCookie } from "~/services/cookiesService";
-import Input from "../Input";
+import Input from "../shared/Input";
 import { EMAIL_REGX } from "~/services/validation";
-import Button from "../Button";
+import Button from "../shared/Button";
 import { ThemeContext } from "~/context/ThemeContext";
 
 export default function Login() {

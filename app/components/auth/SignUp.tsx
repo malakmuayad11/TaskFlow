@@ -2,13 +2,13 @@ import { useRef, useState, useEffect, useContext } from "react";
 import type { FormEvent } from "react";
 import { addUser } from "../../services/indexedDB/userService";
 import { useNavigate } from "react-router";
-import Input from "../Input";
-import FileInput from "../FileInput";
-import Button from "../Button";
+import Input from "../shared/Input";
+import FileInput from "../shared/FileInput";
+import Button from "../shared/Button";
 import { EMAIL_REGX, PASSWORD_REGX } from "~/services/validation";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
-import Toast from "../Toast";
+import Toast from "../shared/Toast";
 import { fileToBase64 } from "~/services/base64";
 import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.svg";
 

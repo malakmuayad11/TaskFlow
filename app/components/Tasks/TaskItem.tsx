@@ -1,6 +1,6 @@
 import { useContext, type ReactElement } from "react";
 import type { TaskStatus, TaskPriority } from "../../types/Task";
-import Badge from "../Badge";
+import Badge from "../shared/Badge";
 import { ThemeContext } from "~/context/ThemeContext";
 
 interface TaskItemProps {
