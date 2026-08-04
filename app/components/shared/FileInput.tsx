@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, type Ref } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
-import profilePicturePlaceholder from "../assets/profilePicturePlaceholder.svg";
+import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.svg";
 import { UserContext } from "~/context/UserContext";
 
 type FileInputProps = {

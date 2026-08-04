@@ -1,10 +1,10 @@
 import StatCard from "./StatCard";
 import { TasksContext } from "../../../context/TasksContext";
 import { useContext } from "react";
-import totalIcon from "../../assets/total-icon.svg";
-import completedIcon from "../../assets/completed-icon.svg";
-import pendingIcon from "../../assets/pending-icon.svg";
-import highPriorityIcon from "../../assets/high-priority-icon.svg";
+import totalIcon from "../../../assets/total-icon.svg";
+import completedIcon from "../../../assets/completed-icon.svg";
+import pendingIcon from "../../../assets/pending-icon.svg";
+import highPriorityIcon from "../../../assets/high-priority-icon.svg";
 
 export default function Statistics() {
   const tasks = useContext(TasksContext).tasks;

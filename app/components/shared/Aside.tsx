@@ -3,15 +3,15 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router";
 import { deleteCookies } from "~/services/cookiesService";
 import Li from "./Li";
-import Logo from "../assets/logo.png";
-import homeIconLight from "../assets/home-icon-light.svg";
-import homeIconDark from "../assets/home-icon-dark.svg";
-import tasksIconLight from "../assets/tasks-icon-light.svg";
-import tasksIconDark from "../assets/tasks-icon-dark.svg";
-import settingsIconLight from "../assets/settings-icon-light.svg";
-import settingsIconDark from "../assets/settings-icon-dark.svg";
-import logoutIconDark from "../assets/logout-icon-dark.svg";
-import logoutIconLight from "../assets/logout-icon-light.svg";
+import Logo from "../../assets/logo.png";
+import homeIconLight from "../../assets/home-icon-light.svg";
+import homeIconDark from "../../assets/home-icon-dark.svg";
+import tasksIconLight from "../../assets/tasks-icon-light.svg";
+import tasksIconDark from "../../assets/tasks-icon-dark.svg";
+import settingsIconLight from "../../assets/settings-icon-light.svg";
+import settingsIconDark from "../../assets/settings-icon-dark.svg";
+import logoutIconDark from "../../assets/logout-icon-dark.svg";
+import logoutIconLight from "../../assets/logout-icon-light.svg";
 import { ThemeContext } from "~/context/ThemeContext";
 
 export default function Aside({

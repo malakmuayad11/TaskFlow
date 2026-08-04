@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import collapseIconDark from "../assets/collapse-icon-dark.svg";
-import collapseIconLight from "../assets/collapse-icon-light.svg";
-import lightModeIcon from "../assets/light-mode-icon.svg";
-import darkModeIcon from "../assets/dark-mode-icon.svg";
+import collapseIconDark from "../../assets/collapse-icon-dark.svg";
+import collapseIconLight from "../../assets/collapse-icon-light.svg";
+import lightModeIcon from "../../assets/light-mode-icon.svg";
+import darkModeIcon from "../../assets/dark-mode-icon.svg";
 import { ThemeContext } from "~/context/ThemeContext";
 import { updateTheme } from "~/services/localStorageService";
 
