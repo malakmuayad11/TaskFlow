@@ -45,59 +45,51 @@ export default function SignUp() {
   async function signUp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (isSubmitting) return;
-
-    if (
-      !firstName.current ||
-      !lastName.current ||
-      !email.current ||
-      !password.current ||
-      !confirmPassword.current
-    ) {
-      alert("Some fields are missing.");
-      return;
-    }
-
-    const isValid = Object.values(formValidity).every(Boolean);
-
-    if (!isValid) {
-      alert("Please complete all fields correctly.");
-      return;
-    }
-
-    setIsSubmitting(true);
+    alert("1: signup started");
 
     try {
+      setIsSubmitting(true);
+
+      alert("2: before validation");
+
+      if (
+        !firstName.current ||
+        !lastName.current ||
+        !email.current ||
+        !password.current ||
+        !confirmPassword.current
+      ) {
+        alert("3: refs missing");
+        return;
+      }
+
+      alert("4: refs OK");
+
       const file = profilePictureURL.current?.files?.[0];
+
+      alert("5: before image");
 
       const profilePicture = file
         ? await fileToBase64(file)
         : profilePicturePlaceholder;
 
+      alert("6: image OK");
+
       await addUser({
-        firstName: firstName.current.value.trim(),
-        lastName: lastName.current.value.trim(),
-        email: email.current.value.trim(),
+        firstName: firstName.current.value,
+        lastName: lastName.current.value,
+        email: email.current.value,
         password: password.current.value,
         profilePictureURL: profilePicture,
       });
 
-      setEmailExists(false);
-      setShowToast(true);
+      alert("7: user added");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      navigate("/");
     } catch (error) {
-      console.error("Signup error:", error);
-
-      alert(error instanceof Error ? error.message : "Signup failed");
-
-      setEmailExists(true);
-
-      if (email.current) {
-        email.current.className += " outline-2 outline-red-500";
-      }
+      alert(
+        "ERROR: " + (error instanceof Error ? error.message : String(error)),
+      );
     } finally {
       setIsSubmitting(false);
     }
