@@ -36,84 +36,29 @@ export default function SignUp() {
 
   useToast(showToast, setShowToast);
 
-  // async function signUp(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-
-  //   // ensure all refs are available before accessing their values
-  //   if (
-  //     !firstName.current ||
-  //     !lastName.current ||
-  //     !email.current ||
-  //     !password.current ||
-  //     !confirmPassword.current ||
-  //     !profilePictureURL.current
-  //   )
-  //     return;
-
-  //   if (!Object.values(formValidity).every((f) => f === true)) return;
-
-  //   // provide default profile picture
-  //   const file = profilePictureURL.current.files?.[0];
-  //   const profilePicture = file
-  //     ? await fileToBase64(file)
-  //     : profilePicturePlaceholder;
-
-  //   try {
-  //     await addUser({
-  //       firstName: firstName.current.value,
-  //       lastName: lastName.current.value,
-  //       email: email.current.value,
-  //       password: password.current.value,
-  //       profilePictureURL: profilePicture,
-  //     });
-  //     alert("going to the main page1");
-
-  //     setEmailExists(false);
-  //     setShowToast(true);
-  //     alert("going to the main page2");
-  //     setTimeout(() => {
-  //       navigator("/"); // go to start page
-  //     }, 2000);
-  //   } catch {
-  //     alert("error occurred");
-  //     setEmailExists(true);
-  //     email.current.className += "outline-2 outline-red-500";
-  //   }
-  // }
-
   async function signUp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    alert("1: signup started");
+    // ensure all refs are available before accessing their values
+    if (
+      !firstName.current ||
+      !lastName.current ||
+      !email.current ||
+      !password.current ||
+      !confirmPassword.current ||
+      !profilePictureURL.current
+    )
+      return;
+
+    if (!Object.values(formValidity).every((f) => f === true)) return;
+
+    // provide default profile picture
+    const file = profilePictureURL.current.files?.[0];
+    const profilePicture = file
+      ? await fileToBase64(file)
+      : profilePicturePlaceholder;
 
     try {
-      setIsSubmitting(true);
-
-      alert("2: before validation");
-
-      if (
-        !firstName.current ||
-        !lastName.current ||
-        !email.current ||
-        !password.current ||
-        !confirmPassword.current
-      ) {
-        alert("3: refs missing");
-        return;
-      }
-
-      alert("4: refs OK");
-
-      const file = profilePictureURL.current?.files?.[0];
-
-      alert("5: before image");
-
-      const profilePicture = file
-        ? await fileToBase64(file)
-        : profilePicturePlaceholder;
-
-      alert("6: image OK");
-
       await addUser({
         firstName: firstName.current.value,
         lastName: lastName.current.value,
@@ -121,16 +66,18 @@ export default function SignUp() {
         password: password.current.value,
         profilePictureURL: profilePicture,
       });
+      alert("going to the main page1");
 
-      alert("7: user added");
-
-      navigator("/");
-    } catch (error) {
-      alert(
-        "ERROR: " + (error instanceof Error ? error.message : String(error)),
-      );
-    } finally {
-      setIsSubmitting(false);
+      setEmailExists(false);
+      setShowToast(true);
+      alert("going to the main page2");
+      setTimeout(() => {
+        navigator("/"); // go to start page
+      }, 2000);
+    } catch {
+      alert("error occurred");
+      setEmailExists(true);
+      email.current.className += "outline-2 outline-red-500";
     }
   }
 
