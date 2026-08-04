@@ -1,5 +1,7 @@
 import { useContext, useState, type Ref } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
+import profilePicturePlaceholder from "../assets/profilePicturePlaceholder.svg";
+import { UserContext } from "~/context/UserContext";
 
 type FileInputProps = {
   accept?: string;
@@ -18,8 +20,11 @@ export default function FileInput({
   labelName,
   wrapperClassName,
 }: FileInputProps) {
+  const user = useContext(UserContext)?.user;
   const theme = useContext(ThemeContext).theme;
-  const [img, setImg] = useState("app/assets/profilePicturePlaceholder.svg");
+  const [img, setImg] = useState(
+    user?.profilePictureURL || profilePicturePlaceholder,
+  );
 
   function handleInputChange(
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,

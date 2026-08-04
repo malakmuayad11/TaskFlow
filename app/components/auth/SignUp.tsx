@@ -9,6 +9,8 @@ import { EMAIL_REGX, PASSWORD_REGX } from "~/services/validation";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
 import Toast from "../Toast";
+import { fileToBase64 } from "~/services/base64";
+import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.svg";
 
 export default function SignUp() {
   const theme = useContext(ThemeContext).theme;
@@ -52,8 +54,8 @@ export default function SignUp() {
     // provide default profile picture
     const file = profilePictureURL.current.files?.[0];
     const profilePicture = file
-      ? URL.createObjectURL(file)
-      : "app/assets/profilePicturePlaceholder.svg";
+      ? await fileToBase64(file)
+      : profilePicturePlaceholder;
 
     try {
       await addUser({

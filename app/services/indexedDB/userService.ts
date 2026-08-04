@@ -181,3 +181,40 @@ export async function updateUserPasswword(
     };
   });
 }
+
+export async function updateUserProfile(
+  user: Omit<User, "email" | "password">,
+): Promise<void> {
+  const db = await getDB();
+
+  return new Promise(async (resolve, reject) => {
+    if (!db) {
+      reject(new Error("Database is not initialized."));
+      return;
+    }
+
+    try {
+      const existingUser = await getUserById(user.userId);
+      const tx = db.transaction("users", "readwrite");
+      const store = tx.objectStore("users");
+      const updateRequest = store.put({
+        ...existingUser,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        profilePictureURL: user.profilePictureURL,
+      });
+
+      updateRequest.onsuccess = () => {
+        console.log("User updated!");
+        resolve();
+      };
+
+      updateRequest.onerror = () => {
+        reject(updateRequest.error ?? new Error("Error updating user."));
+      };
+    } catch {
+      reject(new Error("User with id " + user.userId + " is not found"));
+      return;
+    }
+  });
+}

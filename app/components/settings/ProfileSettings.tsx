@@ -3,12 +3,17 @@ import Input from "../Input";
 import { EMAIL_REGX } from "~/services/validation";
 import FileInput from "../FileInput";
 import Button from "../Button";
-import { updateUser } from "~/services/indexedDB/userService";
+import {
+  updateUser,
+  updateUserProfile,
+} from "~/services/indexedDB/userService";
 import { UserContext } from "~/context/UserContext";
 import type { User } from "~/types/User";
 import Toast from "../Toast";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
+import { fileToBase64 } from "~/services/base64";
+import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.svg";
 
 export default function ProfileSettings() {
   const user = useContext(UserContext)?.user;
@@ -45,18 +50,27 @@ export default function ProfileSettings() {
     // Provide default profile picture placeholder
     const file = profilePictureRef.current.files?.[0];
     const profilePicture = file
-      ? URL.createObjectURL(file)
-      : "app/assets/profilePicturePlaceholder.svg";
+      ? await fileToBase64(file)
+      : profilePicturePlaceholder;
 
     try {
-      const updatedUser: Omit<User, "password"> = {
-        userId: user.userId,
-        firstName: firstNameRef.current.value,
-        lastName: lastNameRef.current.value,
-        email: emailRef.current.value,
-        profilePictureURL: profilePicture,
-      };
-      await updateUser(updatedUser);
+      if (user.email === emailRef.current.value) {
+        await updateUserProfile({
+          userId: user.userId,
+          firstName: firstNameRef.current.value,
+          lastName: lastNameRef.current.value,
+          profilePictureURL: profilePicture,
+        });
+      } else {
+        const updatedUser: Omit<User, "password"> = {
+          userId: user.userId,
+          firstName: firstNameRef.current.value,
+          lastName: lastNameRef.current.value,
+          email: emailRef.current.value,
+          profilePictureURL: profilePicture,
+        };
+        await updateUser(updatedUser);
+      }
       setToastMessage("Profile data is updated sucessfully");
       setShowToast(true);
     } catch {
