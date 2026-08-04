@@ -125,7 +125,6 @@ export default function SignUp() {
       className={`flex justify-center items-center min-h-screen w-full ${theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"} px-4`}
     >
       <form
-        onSubmit={signUp}
         className={`grid grid-cols-1 md:grid-cols-2 gap-2 w-full max-w-xl ${theme === "Light" ? "bg-bg-main border-border-color" : "bg-bg-surface-dark border-border-color-dark shadow-primary/30"} p-2 md:p-4 border rounded-btn shadow-xl`}
       >
         <h2
@@ -217,9 +216,10 @@ export default function SignUp() {
         />
 
         <Button
+          onSubmit={signUp}
           content="Create account"
           type="submit"
-          className="col-span-1 md:col-span-2z z-50"
+          className="col-span-1 md:col-span-2 z-50"
         />
       </form>
       {showToast && <Toast title="Account is created successfully." />}

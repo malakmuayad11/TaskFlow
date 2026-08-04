@@ -1,5 +1,8 @@
+import type { FormEvent } from "react";
+
 type ButtonProps = {
   content: string;
+  onSubmit?: (event: FormEvent<HTMLFormElement>) => Promise<void>;
   onClick?: () => void;
   className?: string;
   type?: "submit" | "button" | "reset";
