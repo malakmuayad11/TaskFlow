@@ -23,7 +23,11 @@ export default function TasksByPriorityCard({ tasks }: { tasks: Task[] }) {
 
   return (
     <section
-      className={`flex flex-col gap-3 p-2 ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn hover:shadow-lg duration-200`}
+      className={`flex flex-col gap-3 p-2 ${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"
+      } border rounded-btn hover:shadow-lg duration-200`}
     >
       <h5 className="text-m font-medium">Tasks by Priority</h5>
       <PriorityItem priority="High" tasksNumber={highPriorityTasks} />

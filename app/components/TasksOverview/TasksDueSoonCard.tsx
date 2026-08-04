@@ -22,7 +22,11 @@ export default function TasksDueSoonCard({ tasks }: { tasks: Task[] }) {
 
   return (
     <section
-      className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn p-2 overflow-y-auto hover:shadow-lg duration-200`}
+      className={`${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"
+      } border rounded-btn p-2 overflow-y-auto hover:shadow-lg duration-200`}
     >
       <h5 className="text-m font-medium mb-1">Tasks Due Soon</h5>
       {dueSoonTasks.length === 0 ? (

@@ -12,12 +12,13 @@ export default function Dashboard() {
 
   function handleCollapseClick() {
     setIsCollapsed((prev) => !prev);
-    console.log("collapsed");
   }
 
   return (
     <div
-      className={`${theme === "Light" ? "bg-bg-main" : "bg-bg-main-dark"} md:grid min-h-screen grid-rows-[auto_1fr] transition-[grid-template-columns]`}
+      className={`${
+        theme === "Light" ? "bg-bg-main" : "bg-bg-main-dark"
+      } md:grid min-h-screen grid-rows-[auto_1fr] transition-[grid-template-columns]`}
       style={{
         gridTemplateColumns: isCollapsed
           ? "0px minmax(0,1fr)"
@@ -28,7 +29,11 @@ export default function Dashboard() {
       <Header onCollapseClick={handleCollapseClick} />
 
       <main
-        className={`row-span-2 ${theme === "Light" ? "bg-bg-main text-text-primary" : "bg-bg-main-dark text-text-primary-dark"} p-4 container mx-auto`}
+        className={`row-span-2 ${
+          theme === "Light"
+            ? "bg-bg-main text-text-primary"
+            : "bg-bg-main-dark text-text-primary-dark"
+        } p-4 container mx-auto`}
       >
         <Outlet />
       </main>

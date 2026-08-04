@@ -8,7 +8,9 @@ export default function Settings() {
   const theme = useContext(ThemeContext).theme;
   return (
     <section
-      className={`flex flex-col gap-2 border ${theme === "Light" ? "border-border-color" : "border-border-color-dark"}
+      className={`flex flex-col gap-2 border ${
+        theme === "Light" ? "border-border-color" : "border-border-color-dark"
+      }
        rounded-btn p-4`}
     >
       <h2 className="text-xl font-bold">Settings</h2>

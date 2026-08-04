@@ -69,7 +69,7 @@ export default function SignUp() {
       setShowToast(true);
       setTimeout(() => {
         navigator("/"); // go to start page
-      }, 2200);
+      }, 2000);
     } catch {
       setEmailExists(true);
       email.current.className += "outline-2 outline-red-500";

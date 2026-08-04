@@ -1,5 +1,4 @@
 import TasksList from "../components/Tasks/TasksList";
-import TasksHeader from "../components/Tasks/TasksHeader";
 import { useContext } from "react";
 import { ViewContext } from "../context/ViewContext";
 import { TasksContext } from "../context/TasksContext";

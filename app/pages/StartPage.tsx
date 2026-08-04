@@ -15,10 +15,16 @@ export default function StartPage() {
   return (
     <>
       <div
-        className={`flex justify-center items-center min-h-screen w-screen ${theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"}`}
+        className={`flex justify-center items-center min-h-screen w-screen ${
+          theme === "Light" ? "bg-slate-50" : "bg-bg-main-dark"
+        }`}
       >
         <div
-          className={`flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 ${theme === "Light" ? "bg-white border-border-color" : "bg-bg-surface-dark border-border-color-dark shadow-primary/30"} shadow-lg max-w-md md:w-full animate-slide-down`}
+          className={`flex gap-4 justify-center items-center flex-col border border-solid rounded-card p-12 ${
+            theme === "Light"
+              ? "bg-white border-border-color"
+              : "bg-bg-surface-dark border-border-color-dark shadow-primary/30"
+          } shadow-lg max-w-md md:w-full animate-slide-down`}
         >
           <div className="flex items-center">
             <img
@@ -32,14 +38,22 @@ export default function StartPage() {
             </h1>
           </div>
           <p
-            className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+            className={`${
+              theme === "Light"
+                ? "text-text-secondary"
+                : "text-text-secondary-dark"
+            }`}
           >
             Your Flow, Simplified.
           </p>
           <Button content="Sign Up" onClick={goToSignUp} />
           <div>
             <p
-              className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+              className={`${
+                theme === "Light"
+                  ? "text-text-secondary"
+                  : "text-text-secondary-dark"
+              }`}
             >
               Already have an account?{" "}
               <Link

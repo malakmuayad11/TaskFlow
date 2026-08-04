@@ -37,7 +37,11 @@ export default function TaskCard({ title, dueDate, priority }: TaskCardProps) {
           alt="Calendar icon"
         />
         <p
-          className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"} translate-y-1.5`}
+          className={`text-sm ${
+            theme === "Light"
+              ? "text-text-secondary"
+              : "text-text-secondary-dark"
+          } translate-y-1.5`}
         >
           {formattedDate}
         </p>

@@ -21,13 +21,21 @@ export default function RecentTasksCard() {
 
   return (
     <section
-      className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn p-2 mt-2 hover:shadow-lg duration-200`}
+      className={`${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"
+      } border rounded-btn p-2 mt-2 hover:shadow-lg duration-200`}
     >
       {tasks.length === 0 ? (
         <>
           <h5 className="font-medium">Recent Tasks</h5>
           <p
-            className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+            className={`${
+              theme === "Light"
+                ? "text-text-secondary"
+                : "text-text-secondary-dark"
+            }`}
           >
             No tasks are added recently.
           </p>

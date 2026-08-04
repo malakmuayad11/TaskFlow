@@ -15,13 +15,21 @@ export default function ExportDataSettings() {
 
   return (
     <section
-      className={`border-b ${theme === "Light" ? "border-b-border-color" : "border-b-border-color-dark"}`}
+      className={`border-b ${
+        theme === "Light"
+          ? "border-b-border-color"
+          : "border-b-border-color-dark"
+      }`}
     >
       <h4 className="font-medium">Export Tasks</h4>
 
       <div className="flex justify-between">
         <p
-          className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+          className={`${
+            theme === "Light"
+              ? "text-text-secondary"
+              : "text-text-secondary-dark"
+          }`}
         >
           Download all your tasks data
         </p>

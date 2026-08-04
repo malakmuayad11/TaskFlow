@@ -114,7 +114,11 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
             onStartAdd={() => setIsAddingTask(true)}
           />
           <div
-            className={`border ${theme === "Light" ? "border-border-color" : "border-border-color-dark"} rounded-btn mt-4 p-2`}
+            className={`border ${
+              theme === "Light"
+                ? "border-border-color"
+                : "border-border-color-dark"
+            } rounded-btn mt-4 p-2`}
           >
             <TasksTable
               tasks={displayedTasks}

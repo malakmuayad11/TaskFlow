@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Input from "../Input";
 import { EMAIL_REGX } from "~/services/validation";
 import FileInput from "../FileInput";
@@ -9,7 +9,6 @@ import {
   updateUserProfile,
 } from "~/services/indexedDB/userService";
 import { UserContext } from "~/context/UserContext";
-import type { User } from "~/types/User";
 import Toast from "../Toast";
 import { useToast } from "~/hooks/useToast";
 import { ThemeContext } from "~/context/ThemeContext";
@@ -28,12 +27,6 @@ export default function ProfileSettings() {
   const [toastMessage, setToastMessage] = useState("");
 
   useToast(showToast, setShowToast);
-
-  // useEffect(() => {
-  //   if (setUser && user) {
-  //     setUser(user);
-  //   }
-  // }, [user]);
 
   async function handleSave() {
     if (
@@ -98,7 +91,11 @@ export default function ProfileSettings() {
   return (
     <>
       <section
-        className={`grid grid-cols-1 md:grid-cols-2 gap-2 border ${theme === "Light" ? "border-border-color bg-bg-surface" : "border-border-color-dark bg-bg-surface-dark"} rounded-btn p-2`}
+        className={`grid grid-cols-1 md:grid-cols-2 gap-2 border ${
+          theme === "Light"
+            ? "border-border-color bg-bg-surface"
+            : "border-border-color-dark bg-bg-surface-dark"
+        } rounded-btn p-2`}
       >
         <h3 className="text-lg font-semibold col-span-2">Profile Data</h3>
         <Input

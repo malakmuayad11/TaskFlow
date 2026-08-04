@@ -28,7 +28,11 @@ export default function TasksTable({
       </thead>
 
       <tbody
-        className={`${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark"} border`}
+        className={`${
+          theme === "Light"
+            ? "bg-bg-surface border-border-color"
+            : "bg-bg-surface-dark border-border-color-dark"
+        } border`}
       >
         {tasks.map((task) => (
           <TaskRow

@@ -15,6 +15,7 @@ export default function TasksBoard({ initialTasks }: { initialTasks: Task[] }) {
   function handleAddTask() {
     setIsAddingTask(true);
   }
+
   function handleSave(addedTask: Omit<Task, "taskId">) {
     const newTask: Task = { ...addedTask, taskId: Date.now() };
     addTask(newTask);

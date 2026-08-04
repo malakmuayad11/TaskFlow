@@ -20,14 +20,22 @@ export default function ControlBar({
   return (
     <div className="flex gap-1">
       <input
-        className={`${theme === "Light" ? "bg-bg-surface text-text-secondary border-border-color" : "bg-bg-surface-dark text-text-secondary-dark border-border-color-dark"} md:p-0.5 border rounded-btn focus:outline-primary`}
+        className={`${
+          theme === "Light"
+            ? "bg-bg-surface text-text-secondary border-border-color"
+            : "bg-bg-surface-dark text-text-secondary-dark border-border-color-dark"
+        } md:p-0.5 border rounded-btn focus:outline-primary`}
         type="search"
         placeholder="Search tasks..."
         onChange={(e) => onSearch(e.target.value.trim())}
       />
 
       <select
-        className={`${theme === "Light" ? "bg-bg-surface text-text-primary border-border-color" : "bg-bg-surface-dark text-primary-light border-border-color-dark"} md:p-0.5 border rounded-btn`}
+        className={`${
+          theme === "Light"
+            ? "bg-bg-surface text-text-primary border-border-color"
+            : "bg-bg-surface-dark text-primary-light border-border-color-dark"
+        } md:p-0.5 border rounded-btn`}
         value={filter}
         onChange={(e) => {
           onFilterChange(e.target.value);

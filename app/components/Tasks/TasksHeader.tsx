@@ -8,7 +8,7 @@ export default function TasksHeader() {
     <header>
       <h2>Tasks</h2>
       <div>
-        <button className="text-black">mode</button>
+        <button className="text-black"></button>
         <img src={user?.profilePictureURL} alt="User's avatar" />
       </div>
     </header>

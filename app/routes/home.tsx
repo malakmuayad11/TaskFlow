@@ -1,7 +1,6 @@
 import StartPage from "~/pages/StartPage";
 import type { Route } from "./+types/home";
 import { getCookie } from "~/services/cookiesService";
-import { getUserById } from "~/services/indexedDB/userService";
 import { redirect } from "react-router";
 
 export function meta({}: Route.MetaArgs) {

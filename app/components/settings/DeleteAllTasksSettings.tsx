@@ -12,7 +12,11 @@ export default function DeleteAllTasksSettings({
       <h4 className="font-medium">Delete All Tasks</h4>
       <div className="flex justify-between">
         <p
-          className={`${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+          className={`${
+            theme === "Light"
+              ? "text-text-secondary"
+              : "text-text-secondary-dark"
+          }`}
         >
           This action cannot be undone
         </p>

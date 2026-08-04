@@ -16,7 +16,11 @@ export default function StatCard({
 
   return (
     <section
-      className={`flex flex-col gap-1 ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn p-2 justify-center items-center
+      className={`flex flex-col gap-1 ${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"
+      } border rounded-btn p-2 justify-center items-center
       hover:shadow-xl duration-200`}
     >
       <h3 className="text-lg font-semibold">{title}</h3>

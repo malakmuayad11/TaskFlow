@@ -24,9 +24,7 @@
 
   /* Fonts & Radius */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --radius-card: 12px;
   --radius-btn: 8px;
-  --radius-badge: 9999px;
 
   @keyframes slide-down {
     0% {

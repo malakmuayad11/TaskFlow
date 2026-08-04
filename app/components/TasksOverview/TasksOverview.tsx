@@ -11,7 +11,9 @@ export default function TasksOverview() {
 
   return (
     <section
-      className={`mt-1.5 border ${theme === "Light" ? "border-border-color" : "border-border-color-dark"} rounded-btn p-2`}
+      className={`mt-1.5 border ${
+        theme === "Light" ? "border-border-color" : "border-border-color-dark"
+      } rounded-btn p-2`}
     >
       <h4 className="mb-1.5 text-xl font-semibold">Tasks Overview</h4>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1">

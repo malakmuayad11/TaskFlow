@@ -18,13 +18,15 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
         );
 
   const feedback: string =
-    completionPercentage <= 25
-      ? "No progress!"
-      : completionPercentage <= 50
-        ? "Getting there!"
-        : completionPercentage <= 75
-          ? "Almost done!"
-          : "Completed!";
+    completionPercentage === 0
+      ? "You haven’t started yet — let’s get going!"
+      : completionPercentage <= 25
+        ? "Nice start! Keep the momentum going."
+        : completionPercentage <= 50
+          ? "Good progress — you’re halfway there."
+          : completionPercentage <= 75
+            ? "Almost there! Finish strong."
+            : "Great work! All tasks are complete.";
 
   // Constants for drawing the SVG chart
   const radius = 30;
@@ -33,7 +35,11 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
 
   return (
     <section
-      className={`items-center ${theme === "Light" ? "bg-bg-surface border-border-color" : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"} border rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200`}
+      className={`items-center ${
+        theme === "Light"
+          ? "bg-bg-surface border-border-color"
+          : "bg-bg-surface-dark border-border-color-dark hover:shadow-primary/30"
+      } border rounded-btn flex flex-col gap-2 p-2 hover:shadow-lg duration-200`}
     >
       <h5 className="self-start text-m font-medium">Tasks Completion</h5>
       <div className="flex justify-center items-center gap-5">
@@ -66,7 +72,9 @@ export default function TasksCompletionCard({ tasks }: { tasks: Task[] }) {
         </svg>
       </div>
       <p
-        className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+        className={`text-sm text-center ${
+          theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"
+        }`}
       >
         {feedback}
       </p>

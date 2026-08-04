@@ -30,7 +30,11 @@ export default function TaskItem({
 
   return (
     <tr
-      className={`border-b ${theme === "Light" ? "border-b-border-color" : "border-b-border-color-dark"} w-full`}
+      className={`border-b ${
+        theme === "Light"
+          ? "border-b-border-color"
+          : "border-b-border-color-dark"
+      } w-full`}
     >
       <td className="text-sm p-2">{title}</td>
       {status && (
@@ -39,7 +43,9 @@ export default function TaskItem({
         </td>
       )}
       <td
-        className={`text-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+        className={`text-sm ${
+          theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"
+        }`}
       >
         {formattedDate}
       </td>

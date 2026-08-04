@@ -3,7 +3,7 @@ import Input from "../Input";
 import { UserContext } from "~/context/UserContext";
 import { PASSWORD_REGX } from "~/services/validation";
 import Button from "../Button";
-import { updateUserPasswword } from "~/services/indexedDB/userService";
+import { updateUserPasswword as updateUserPassword } from "~/services/indexedDB/userService";
 import { useToast } from "~/hooks/useToast";
 import Toast from "../Toast";
 import { ThemeContext } from "~/context/ThemeContext";
@@ -33,7 +33,7 @@ export default function PasswordSettings() {
     }
 
     try {
-      await updateUserPasswword(user.userId, passwordRef.current?.value ?? "");
+      await updateUserPassword(user.userId, passwordRef.current?.value ?? "");
       setToastMessage("Password is updated sucessfully");
       setShowToast(true);
     } catch {
@@ -45,7 +45,11 @@ export default function PasswordSettings() {
   return (
     <>
       <section
-        className={`flex flex-col gap-2 w-full ${theme === "Light" ? "border-border-color bg-bg-surface" : "border-border-color-dark bg-bg-surface-dark"} rounded-btn p-2`}
+        className={`flex flex-col gap-2 w-full ${
+          theme === "Light"
+            ? "border-border-color bg-bg-surface"
+            : "border-border-color-dark bg-bg-surface-dark"
+        } rounded-btn p-2`}
       >
         <h3 className="text-lg font-semibold col-span-2">Change Password</h3>
         <Input

@@ -13,7 +13,6 @@ export function useLoadTasks(
       try {
         const result = await getTasksByUserId(userId);
         setTasks(result);
-        console.log("Tasks are loaded");
       } catch (error) {
         console.error("Failed to load tasks:", error);
       }
