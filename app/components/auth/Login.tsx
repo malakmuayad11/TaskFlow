@@ -22,18 +22,23 @@ export default function Login() {
     event.preventDefault();
     if (!email.current || !password.current) return;
 
+    console.log("email and password ref are defined");
     try {
       const user = await getUser(email.current.value);
+      console.log("user is found");
 
       if (
         user &&
         user.password === (await hashPassword(password.current.value))
       ) {
+        console.log("user password is correct");
         setCorrectCredentials(true);
         setUser?.(user);
         createLoggedInUserCookie(user.userId);
         navigator("/dashboard");
       } else {
+        console.log("user password is not correct");
+
         setCorrectCredentials(false);
       }
     } catch {
@@ -72,7 +77,7 @@ export default function Login() {
           className={`${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
         />
         <Input inputType="password" labelName="Password:" ref={password} />
-        <Button content="Login" className="mt-1" />
+        <Button content="Login" className="mt-1" type="submit" />
       </form>
     </div>
   );
