@@ -65,12 +65,16 @@ export default function SignUp() {
         password: password.current.value,
         profilePictureURL: profilePicture,
       });
+      alert("going to the main page1");
+
       setEmailExists(false);
       setShowToast(true);
+      alert("going to the main page2");
       setTimeout(() => {
         navigator("/"); // go to start page
       }, 2000);
     } catch {
+      alert("error occurred");
       setEmailExists(true);
       email.current.className += "outline-2 outline-red-500";
     }
