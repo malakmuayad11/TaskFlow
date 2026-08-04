@@ -35,29 +35,74 @@ export default function SignUp() {
 
   useToast(showToast, setShowToast);
 
+  // async function signUp(event: FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+
+  //   // ensure all refs are available before accessing their values
+  //   if (
+  //     !firstName.current ||
+  //     !lastName.current ||
+  //     !email.current ||
+  //     !password.current ||
+  //     !confirmPassword.current ||
+  //     !profilePictureURL.current
+  //   )
+  //     return;
+
+  //   if (!Object.values(formValidity).every((f) => f === true)) return;
+
+  //   // provide default profile picture
+  //   const file = profilePictureURL.current.files?.[0];
+  //   const profilePicture = file
+  //     ? await fileToBase64(file)
+  //     : profilePicturePlaceholder;
+
+  //   try {
+  //     await addUser({
+  //       firstName: firstName.current.value,
+  //       lastName: lastName.current.value,
+  //       email: email.current.value,
+  //       password: password.current.value,
+  //       profilePictureURL: profilePicture,
+  //     });
+  //     setEmailExists(false);
+  //     setShowToast(true);
+  //     setTimeout(() => {
+  //       navigator("/"); // go to start page
+  //     }, 2000);
+  //   } catch {
+  //     setEmailExists(true);
+  //     email.current.className += "outline-2 outline-red-500";
+  //   }
+  // }
+
   async function signUp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // ensure all refs are available before accessing their values
-    if (
-      !firstName.current ||
-      !lastName.current ||
-      !email.current ||
-      !password.current ||
-      !confirmPassword.current ||
-      !profilePictureURL.current
-    )
-      return;
-
-    if (!Object.values(formValidity).every((f) => f === true)) return;
-
-    // provide default profile picture
-    const file = profilePictureURL.current.files?.[0];
-    const profilePicture = file
-      ? await fileToBase64(file)
-      : profilePicturePlaceholder;
-
     try {
+      // 1. Debug ref availability
+      if (
+        !firstName.current ||
+        !lastName.current ||
+        !password.current ||
+        !email.current ||
+        !profilePictureURL.current
+      ) {
+        alert("Debug: One or more input refs are missing/null.");
+        return;
+      }
+
+      // 2. Check IndexedDB support
+      if (!window.indexedDB) {
+        alert("IndexedDB is blocked or unsupported in this browser/mode.");
+        return;
+      }
+
+      const file = profilePictureURL.current.files?.[0];
+      const profilePicture = file
+        ? await fileToBase64(file)
+        : profilePicturePlaceholder;
+
       await addUser({
         firstName: firstName.current.value,
         lastName: lastName.current.value,
@@ -65,14 +110,13 @@ export default function SignUp() {
         password: password.current.value,
         profilePictureURL: profilePicture,
       });
+
       setEmailExists(false);
       setShowToast(true);
-      setTimeout(() => {
-        navigator("/"); // go to start page
-      }, 2000);
-    } catch {
-      setEmailExists(true);
-      email.current.className += "outline-2 outline-red-500";
+      setTimeout(() => navigator("/"), 2000);
+    } catch (err: any) {
+      // This will print the actual error on your mobile screen
+      alert(`Error during signup: ${err?.message || err}`);
     }
   }
 
