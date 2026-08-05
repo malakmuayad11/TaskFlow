@@ -130,7 +130,7 @@ export default function AddEditTaskForm({
           >
             Cancel
           </button>
-          <Button content="Save" />
+          <Button content="Save" type="submit" />
         </div>
       </form>
     </div>

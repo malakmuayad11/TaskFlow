@@ -50,7 +50,7 @@ export default function ControlBar({
         className={`ml-auto bg-primary hover:bg-primary-hover text-primary-light rounded-btn p-0.5 md:p-1 hover:cursor-pointer text-md hover:-translate-y-1 transition-transform duration-300`}
         onClick={onStartAdd}
       >
-        + Add Task
+        + Task
       </button>
     </div>
   );

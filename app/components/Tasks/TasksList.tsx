@@ -56,12 +56,15 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
     setCurrentPage(1);
   }
 
-  function handleAddTask(task: Omit<Task, "taskId">) {
+  async function handleAddTask(task: Omit<Task, "taskId">) {
     const newTask: Task = { ...task, taskId: Date.now() };
-    addTask(newTask);
+    alert("created task");
+    await addTask(newTask);
     setTasks((previousTasks) => [...previousTasks, newTask]);
+    alert("set task");
     setIsAddingTask(false);
     setCurrentPage(1);
+    alert("add task finished");
   }
 
   function handleDelete(id: number) {
