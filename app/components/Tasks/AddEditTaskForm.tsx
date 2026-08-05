@@ -125,6 +125,7 @@ export default function AddEditTaskForm({
           labelName="Due Date"
           ref={dueDateRef}
           defaultValue={task?.dueDate.toString() ?? Date.now().toString()}
+          className="w-full min-w-0"
         />
         <div className="flex gap-1 mt-2">
           <button

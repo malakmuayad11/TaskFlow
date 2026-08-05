@@ -11,6 +11,7 @@ export default function Toast({ title, additionalStyle = "" }: ToastProps) {
   return (
     <div
       className={`
+        z-100
         fixed right-5 bottom-5
         flex items-center gap-3
         max-w-sm
@@ -18,7 +19,11 @@ export default function Toast({ title, additionalStyle = "" }: ToastProps) {
         border
         backdrop-blur-md
         px-4 py-3
-        ${theme === "Light" ? "shadow-lg" : "shadow-primary/30"}
+        ${
+          theme === "Light"
+            ? "shadow-lg text-text-primary"
+            : "shadow-primary/30 text-text-primary-dark"
+        }
         text-sm
         animate-in fade-in slide-in-from-bottom-4
         ${additionalStyle}
