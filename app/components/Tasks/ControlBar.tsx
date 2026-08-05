@@ -15,7 +15,7 @@ export default function ControlBar({
   onStartAdd,
 }: ControlBarProps) {
   const theme = useContext(ThemeContext).theme;
-  const [filter, setFilter] = useState("oldest");
+  const [filter, setFilter] = useState("newest");
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -43,8 +43,8 @@ export default function ControlBar({
             setFilter(e.target.value.toLowerCase());
           }}
         >
-          <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
+          <option value="newest">Newest</option>
         </select>
 
         <button

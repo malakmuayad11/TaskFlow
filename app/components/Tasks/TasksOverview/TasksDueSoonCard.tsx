@@ -12,9 +12,16 @@ export default function TasksDueSoonCard({ tasks }: { tasks: Task[] }) {
 
   const dueSoonTasks = paginateArray(
     tasks.filter((task) => {
-      const diff = task.dueDate.getTime() - now.getTime();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-      return diff > 0 && diff <= 3 * 24 * 60 * 60 * 1000;
+      const dueDate = new Date(task.dueDate);
+      dueDate.setHours(0, 0, 0, 0);
+
+      const diffDays =
+        (dueDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+
+      return diffDays >= 0 && diffDays <= 3 && task.status !== "Completed";
     }),
     1,
     3,
