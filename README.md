@@ -119,7 +119,7 @@ npm run dev
 
 ## 🎥 Demo
 
-![TaskFlow Demo](https://drive.google.com/file/d/11pgJio-o71EehoXmbiAwg-CFXy7JURjl/view?usp=sharing)
+▶️ [Watch TaskFlow Demo](https://drive.google.com/file/d/11pgJio-o71EehoXmbiAwg-CFXy7JURjl/view?usp=sharing)
 
 ## 👩‍💻 Author
 
