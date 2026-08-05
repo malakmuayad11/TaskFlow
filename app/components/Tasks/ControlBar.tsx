@@ -18,40 +18,42 @@ export default function ControlBar({
   const [filter, setFilter] = useState("oldest");
 
   return (
-    <div className="flex gap-1">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
       <input
         className={`${
           theme === "Light"
             ? "bg-bg-surface text-text-secondary border-border-color"
             : "bg-bg-surface-dark text-text-secondary-dark border-border-color-dark"
-        } md:p-0.5 border rounded-btn focus:outline-primary`}
+        } w-full sm:w-auto sm:flex-1 border rounded-btn px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary`}
         type="search"
         placeholder="Search tasks..."
         onChange={(e) => onSearch(e.target.value.trim())}
       />
 
-      <select
-        className={`${
-          theme === "Light"
-            ? "bg-bg-surface text-text-primary border-border-color"
-            : "bg-bg-surface-dark text-primary-light border-border-color-dark"
-        } md:p-0.5 border rounded-btn`}
-        value={filter}
-        onChange={(e) => {
-          onFilterChange(e.target.value);
-          setFilter(e.target.value.toLowerCase());
-        }}
-      >
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-      </select>
+      <div className="flex gap-2 sm:ml-auto">
+        <select
+          className={`${
+            theme === "Light"
+              ? "bg-bg-surface text-text-primary border-border-color"
+              : "bg-bg-surface-dark text-primary-light border-border-color-dark"
+          } border rounded-btn px-3 py-2`}
+          value={filter}
+          onChange={(e) => {
+            onFilterChange(e.target.value);
+            setFilter(e.target.value.toLowerCase());
+          }}
+        >
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
 
-      <button
-        className={`ml-auto bg-primary hover:bg-primary-hover text-primary-light rounded-btn p-0.5 md:p-1 hover:cursor-pointer text-md hover:-translate-y-1 transition-transform duration-300`}
-        onClick={onStartAdd}
-      >
-        + Task
-      </button>
+        <button
+          className="bg-primary hover:bg-primary-hover text-primary-light rounded-btn px-4 py-2 hover:cursor-pointer active:scale-95 transition"
+          onClick={onStartAdd}
+        >
+          + Add Task
+        </button>
+      </div>
     </div>
   );
 }

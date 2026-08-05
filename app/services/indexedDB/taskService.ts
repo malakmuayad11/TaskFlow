@@ -6,7 +6,6 @@ export async function addTask(task: Task) {
 
   return new Promise((resolve, reject) => {
     if (!db) {
-      alert("Db is not initialized");
       reject(new Error("Database is not initialized."));
       return;
     }
@@ -17,14 +16,11 @@ export async function addTask(task: Task) {
     const addRequest = store.add(task);
 
     addRequest.onsuccess = () => {
-      alert("task is added in db");
-
       console.log(`Task "${task.title}" added`);
       resolve(addRequest.result);
     };
 
     addRequest.onerror = () => {
-      alert("Error adding task in db");
       reject(addRequest.error ?? new Error("Error adding task."));
     };
   });
