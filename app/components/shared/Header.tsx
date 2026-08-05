@@ -60,7 +60,7 @@ export default function Header({
             |
           </span>
         </button>
-        <div className="flex items-center -gap-1">
+        <div className="ml-2 flex items-center -gap-1">
           <img
             src={user?.profilePictureURL}
             alt="User Avatar"
