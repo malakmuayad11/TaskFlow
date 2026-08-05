@@ -28,9 +28,9 @@ export default function Header({
         theme === "Light"
           ? "bg-bg-main border-gray-500"
           : "bg-bg-surface-dark border-border-color-dark"
-      } sticky top-0 z-1000 flex gap-2 justify-between mt-0.5 border-b p-1`}
+      } sticky top-0 z-[1000] flex items-center justify-between gap-2 mt-0.5 border-b p-1`}
     >
-      <div className="flex justify-evenly shrink-0 gap-0.5 mb-0.5">
+      <div className="flex items-center shrink-0">
         <button
           id="btnCollapse"
           data-collapse="false"
@@ -40,18 +40,23 @@ export default function Header({
           <img
             src={theme === "Light" ? collapseIconDark : collapseIconLight}
             alt="Collapse icon"
-            className="h-7 w-7 pr-1"
+            className="h-7 w-7"
           />
         </button>
       </div>
-      <div className="flex items-center -gap-1">
-        <button className=" cursor-pointer flex gap-1" onClick={toggleTheme}>
+
+      <div className="flex items-center gap-2">
+        <button
+          className="cursor-pointer flex items-center gap-1"
+          onClick={toggleTheme}
+        >
           <img
-            className="w-5 h-5 top-1"
+            className="w-5 h-5"
             src={theme === "Dark" ? lightModeIcon : darkModeIcon}
             alt={theme === "Dark" ? "Light mode icon" : "Dark mode icon"}
             loading="eager"
           />
+
           <span
             className={`${
               theme === "Light" ? "text-primary-dark" : "text-primary-light"
@@ -60,16 +65,18 @@ export default function Header({
             |
           </span>
         </button>
-        <div className="ml-2 flex items-center -gap-1">
+
+        <div className="flex items-center gap-2">
           <img
             src={user?.profilePictureURL}
             alt="User Avatar"
             className="object-cover rounded-full w-6 h-6"
           />
+
           <p
             className={`text-center text-sm ${
               theme === "Light" ? "text-text-primary" : "text-text-primary-dark"
-            } m-1`}
+            }`}
           >
             {fullName ?? "Unknown"}
           </p>
