@@ -77,6 +77,7 @@ export default function AddEditTaskForm({
           inputType="text"
           labelName="Title"
           ref={titleRef}
+          defaultValue={task?.title}
           placeholder="Enter task title"
         />
         <div className="flex flex-col gap-1">
@@ -91,6 +92,7 @@ export default function AddEditTaskForm({
             } rounded-btn p-2  focus:outline-primary`}
             required
             value={status}
+            defaultValue={task?.status}
             onChange={(e) => setStatus(e.target.value as Task["status"])}
           >
             <option value="In Progress">In Progress</option>
@@ -111,13 +113,19 @@ export default function AddEditTaskForm({
             required
             value={priority}
             onChange={(e) => setPriority(e.target.value as Task["priority"])}
+            defaultValue={task?.priority}
           >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
         </div>
-        <Input inputType="date" labelName="Due Date" ref={dueDateRef} />
+        <Input
+          inputType="date"
+          labelName="Due Date"
+          ref={dueDateRef}
+          defaultValue={task?.dueDate.toString() ?? Date.now().toString()}
+        />
         <div className="flex gap-1 mt-2">
           <button
             className={`${
