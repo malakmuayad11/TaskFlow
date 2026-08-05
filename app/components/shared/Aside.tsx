@@ -34,8 +34,7 @@ export default function Aside({
   return (
     <>
       <aside
-        id="sideMenu"
-        className={`flex flex-col row-span-2 overflow-hidden border-r fixed md:static top-0 left-0 min-h-screen ${
+        className={`z-100 flex flex-col row-span-2 overflow-hidden border-r fixed md:static top-0 left-0 min-h-screen ${
           theme === "Light"
             ? "bg-bg-surface text-text-primary border-border-color"
             : "bg-bg-surface-dark text-text-primary-dark border-border-color-dark"
