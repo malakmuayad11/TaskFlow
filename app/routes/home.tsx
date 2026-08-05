@@ -5,8 +5,8 @@ import { redirect } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Taskflow" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "TaskFlow" },
+    { name: "description", content: "Manage your tasks effeciently!" },
   ];
 }
 
