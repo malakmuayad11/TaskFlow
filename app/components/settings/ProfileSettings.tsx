@@ -97,7 +97,7 @@ export default function ProfileSettings() {
             : "border-border-color-dark bg-bg-surface-dark"
         } rounded-btn p-2`}
       >
-        <h3 className="text-lg font-semibold col-span-2">Profile Data</h3>
+        <h3 className="text-lg font-semibold md:col-span-2">Profile Data</h3>
         <Input
           inputType="text"
           labelName="First Name:"

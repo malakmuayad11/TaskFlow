@@ -10,7 +10,7 @@ export default function DeleteAllTasksSettings({
   return (
     <section className="mt-1">
       <h4 className="font-medium">Delete All Tasks</h4>
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p
           className={`${
             theme === "Light"
@@ -21,7 +21,7 @@ export default function DeleteAllTasksSettings({
           This action cannot be undone
         </p>
         <button
-          className="bg-red-100 text-red-500 border border-red-500 rounded-btn p-1 -translate-y-3 cursor-pointer hover:opacity-90"
+          className="mt-2 bg-red-100 text-red-500 border border-red-500 rounded-btn p-1 -translate-y-3 cursor-pointer hover:opacity-90"
           onClick={onDeleteAllTasksClick}
         >
           Delete All

@@ -34,6 +34,8 @@ export default function PasswordSettings() {
 
     try {
       await updateUserPassword(user.userId, passwordRef.current?.value ?? "");
+      if (passwordRef.current) passwordRef.current.value = "";
+      if (confirmPasswordRef.current) confirmPasswordRef.current.value = "";
       setToastMessage("Password is updated sucessfully");
       setShowToast(true);
     } catch {

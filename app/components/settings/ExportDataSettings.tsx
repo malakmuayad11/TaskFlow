@@ -15,7 +15,7 @@ export default function ExportDataSettings() {
 
   return (
     <section
-      className={`border-b ${
+      className={`border-b pb-3 ${
         theme === "Light"
           ? "border-b-border-color"
           : "border-b-border-color-dark"
@@ -23,7 +23,7 @@ export default function ExportDataSettings() {
     >
       <h4 className="font-medium">Export Tasks</h4>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p
           className={`${
             theme === "Light"
@@ -33,8 +33,9 @@ export default function ExportDataSettings() {
         >
           Download all your tasks data
         </p>
+
         <button
-          className="bg-primary text-primary-light rounded-btn py-1 px-3.5 -translate-y-1.5 cursor-pointer hover:opacity-90"
+          className="w-full bg-primary text-primary-light rounded-btn py-2 px-3.5 cursor-pointer hover:opacity-90 sm:w-auto"
           onClick={handleExportClick}
         >
           Export

@@ -19,12 +19,20 @@ export default function DefaultThemeSettings() {
 
   return (
     <section
-      className={`border-b ${theme === "Light" ? "border-b-border-color" : "border-b-border-color-dark"}`}
+      className={`border-b ${
+        theme === "Light"
+          ? "border-b-border-color"
+          : "border-b-border-color-dark"
+      }`}
     >
       <h4 className="font-medium">Theme</h4>
       <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
         <p
-          className={`font-sm ${theme === "Light" ? "text-text-secondary" : "text-text-secondary-dark"}`}
+          className={`font-sm ${
+            theme === "Light"
+              ? "text-text-secondary"
+              : "text-text-secondary-dark"
+          }`}
         >
           Choose your preferred theme
         </p>

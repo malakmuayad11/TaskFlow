@@ -56,7 +56,11 @@ export default function DataManagement() {
             An error occurred while deleting tasks. Please try again.
           </div>
           <section
-            className={`flex flex-col gap-1 border ${theme === "Light" ? "border-border-color bg-bg-surface" : "border-border-color-dark bg-bg-surface-dark"} rounded-btn p-2`}
+            className={`flex flex-col gap-1 border ${
+              theme === "Light"
+                ? "border-border-color bg-bg-surface"
+                : "border-border-color-dark bg-bg-surface-dark"
+            } rounded-btn p-2`}
           >
             <h3 className="text-lg font-semibold">Data Management</h3>
 

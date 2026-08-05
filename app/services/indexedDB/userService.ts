@@ -130,9 +130,15 @@ export async function updateUser(user: Omit<User, "password">): Promise<void> {
       return;
     }
 
-    if (await getUser(user.email)) {
-      reject(new Error("User with email " + user.email + " already exists."));
-      return;
+    try {
+      const existingEmailUser = await getUser(user.email);
+
+      if (existingEmailUser.userId !== user.userId) {
+        reject(new Error("User with email " + user.email + " already exists."));
+        return;
+      }
+    } catch (error) {
+      // User with this email does not exist, so it is safe to continue
     }
 
     const tx = db.transaction("users", "readwrite");
