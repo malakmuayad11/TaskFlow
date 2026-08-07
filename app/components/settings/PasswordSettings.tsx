@@ -1,12 +1,11 @@
 import { useContext, useRef, useState } from "react";
-import Input from "../shared/Input";
 import { UserContext } from "~/context/UserContext";
-import { PASSWORD_REGX } from "~/services/validation";
 import Button from "../shared/Button";
 import { updateUserPasswword as updateUserPassword } from "~/services/indexedDB/userService";
 import { useToast } from "~/hooks/useToast";
 import Toast from "../shared/Toast";
 import { ThemeContext } from "~/context/ThemeContext";
+import PasswordInput from "../shared/PasswordInput";
 
 export default function PasswordSettings() {
   const user = useContext(UserContext)?.user;
@@ -54,18 +53,10 @@ export default function PasswordSettings() {
         } rounded-btn p-2`}
       >
         <h3 className="text-lg font-semibold col-span-2">Change Password</h3>
-        <Input
-          inputType="password"
-          labelName="New Password:"
-          ref={passwordRef}
-          validationRegex={PASSWORD_REGX}
-          validationMsg="Password must be at least 8 characters and include an uppercase letter,
-           a lowercase letter, a number, and a special character."
-        />
-        <Input
-          inputType="password"
-          labelName="Confirm New Password:"
-          ref={confirmPasswordRef}
+        <PasswordInput passwordRef={passwordRef} />
+        <PasswordInput
+          labelName="Confirm New Password"
+          passwordRef={confirmPasswordRef}
           onValidate={() => {
             return (
               passwordRef.current?.value === confirmPasswordRef.current?.value

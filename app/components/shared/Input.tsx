@@ -2,6 +2,7 @@ import {
   useContext,
   useState,
   type InputHTMLAttributes,
+  type ReactNode,
   type Ref,
 } from "react";
 import InputWrapper from "./InputWrapper";
@@ -22,6 +23,7 @@ type InputProps = {
   wrapperClassName?: string;
   placeholder?: string;
   defaultValue?: string;
+  children?: ReactNode;
 };
 
 export default function Input({
@@ -39,6 +41,7 @@ export default function Input({
   wrapperClassName,
   placeholder,
   defaultValue,
+  children,
 }: InputProps) {
   const theme = useContext(ThemeContext).theme;
   const [isValid, setIsValid] = useState(true);
@@ -79,32 +82,36 @@ export default function Input({
         </p>
       </div>
 
-      <input
-        className={`
-          border-[1.75px]
-          ${
-            isValid
-              ? theme === "Light"
-                ? "border-border-color bg-primary-light text-primary-dark"
-                : "border-border-color-dark bg-primary-dark text-primary-light"
-              : "border-red-500"
-          }
-          rounded-btn
-          p-1
-          ${isValid ? "focus:outline-primary" : "focus:outline-red-500"}
-          ${className ?? ""}
-        `}
-        ref={ref}
-        type={inputType}
-        {...(accept && { accept })}
-        {...(isHidden && { hidden: true })}
-        onChange={handleValidation}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        autoCapitalize="none"
-        autoCorrect="off"
-        spellCheck="false"
-      />
+      <div className="relative w-full">
+        <input
+          className={`
+              border-[1.75px]
+              ${
+                isValid
+                  ? theme === "Light"
+                    ? "border-border-color bg-primary-light text-primary-dark"
+                    : "border-border-color-dark bg-primary-dark text-primary-light"
+                  : "border-red-500"
+              }
+              rounded-btn
+              w-full
+              p-1
+              ${isValid ? "focus:outline-primary" : "focus:outline-red-500"}
+              ${className ?? ""}
+            `}
+          ref={ref}
+          type={inputType}
+          {...(accept && { accept })}
+          {...(isHidden && { hidden: true })}
+          onChange={handleValidation}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck="false"
+        />
+        {children}
+      </div>
     </InputWrapper>
   );
 }

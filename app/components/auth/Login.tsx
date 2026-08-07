@@ -9,6 +9,7 @@ import Input from "../shared/Input";
 import { EMAIL_REGX } from "~/services/validation";
 import Button from "../shared/Button";
 import { ThemeContext } from "~/context/ThemeContext";
+import PasswordInput from "../shared/PasswordInput";
 
 export default function Login() {
   const theme = useContext(ThemeContext).theme;
@@ -76,7 +77,7 @@ export default function Login() {
           ref={email}
           className={`${theme === "Light" ? "text-primary-dark" : "text-primary-light"}`}
         />
-        <Input inputType="password" labelName="Password:" ref={password} />
+        <PasswordInput passwordRef={password} />
         <Button content="Login" className="mt-1" type="submit" />
       </form>
     </div>

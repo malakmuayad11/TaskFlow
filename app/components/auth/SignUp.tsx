@@ -11,6 +11,7 @@ import { ThemeContext } from "~/context/ThemeContext";
 import Toast from "../shared/Toast";
 import { fileToBase64 } from "~/services/base64";
 import profilePicturePlaceholder from "../../assets/profilePicturePlaceholder.svg";
+import PasswordInput from "../shared/PasswordInput";
 
 export default function SignUp() {
   const theme = useContext(ThemeContext).theme;
@@ -136,12 +137,8 @@ export default function SignUp() {
           </p>
         </div>
 
-        <Input
-          inputType="password"
-          labelName="Password:"
-          ref={password}
-          validationRegex={PASSWORD_REGX}
-          validationMsg="Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a special character."
+        <PasswordInput
+          passwordRef={password}
           onValidationChange={(valid) =>
             setFormValidity((prev) => ({
               ...prev,
@@ -150,7 +147,21 @@ export default function SignUp() {
           }
         />
 
-        <Input
+        <PasswordInput
+          labelName="Confirm Password:"
+          passwordRef={confirmPassword}
+          onValidationChange={(valid) =>
+            setFormValidity((prev) => ({
+              ...prev,
+              confirmPassword: valid,
+            }))
+          }
+          onValidate={() =>
+            password.current?.value === confirmPassword.current?.value
+          }
+          validationMsg="Passwords must match"
+        />
+        {/* <Input
           inputType="password"
           labelName="Confirm Password:"
           ref={confirmPassword}
@@ -164,7 +175,7 @@ export default function SignUp() {
               confirmPassword: valid,
             }))
           }
-        />
+        /> */}
 
         <FileInput
           ref={profilePictureURL}
