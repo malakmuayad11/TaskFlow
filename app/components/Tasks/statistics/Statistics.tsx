@@ -5,16 +5,20 @@ import totalIcon from "../../../assets/total-icon.svg";
 import completedIcon from "../../../assets/completed-icon.svg";
 import pendingIcon from "../../../assets/pending-icon.svg";
 import highPriorityIcon from "../../../assets/high-priority-icon.svg";
+import { Link } from "react-router";
 
 export default function Statistics() {
   const tasks = useContext(TasksContext).tasks;
   return (
     <section className="mt-2.5 grid md:grid-cols-4 grid-cols-2 gap-1 justify-center items-center">
-      <StatCard
-        title="Total Tasks"
-        statNumber={tasks.length}
-        imageURL={totalIcon}
-      />
+      <Link to="/dashboard/tasks">
+        <StatCard
+          title="Total Tasks"
+          statNumber={tasks.length}
+          imageURL={totalIcon}
+        />
+      </Link>
+
       <StatCard
         title="Completed"
         statNumber={tasks.reduce(
@@ -23,6 +27,7 @@ export default function Statistics() {
         )}
         imageURL={completedIcon}
       />
+
       <StatCard
         title="Pending"
         statNumber={tasks.reduce(
