@@ -42,14 +42,22 @@ export default function TasksTable({
             theme === "Light" ? "bg-bg-surface" : "bg-bg-surface-dark"
           }`}
         >
-          {tasks.map((task) => (
-            <TaskRow
-              key={task.taskId}
-              {...task}
-              onEdit={() => onEdit(task)}
-              onDelete={() => onDelete(task.taskId)}
-            />
-          ))}
+          {tasks.length === 0 ? (
+            <tr>
+              <td className="p-2" colSpan={5}>
+                No tasks are available
+              </td>
+            </tr>
+          ) : (
+            tasks.map((task) => (
+              <TaskRow
+                key={task.taskId}
+                {...task}
+                onEdit={() => onEdit(task)}
+                onDelete={() => onDelete(task.taskId)}
+              />
+            ))
+          )}
         </tbody>
       </table>
     </div>

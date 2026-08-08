@@ -26,6 +26,15 @@ type Pages = {
   "/dashboard/tasks": {
     params: {};
   };
+  "/dashboard/tasks-completed": {
+    params: {};
+  };
+  "/dashboard/tasks-pending": {
+    params: {};
+  };
+  "/dashboard/tasks-high-priority": {
+    params: {};
+  };
   "/dashboard/settings": {
     params: {};
   };
@@ -34,7 +43,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/sign-up" | "/login" | "/dashboard" | "/dashboard/tasks" | "/dashboard/settings";
+    page: "/" | "/sign-up" | "/login" | "/dashboard" | "/dashboard/tasks" | "/dashboard/tasks-completed" | "/dashboard/tasks-pending" | "/dashboard/tasks-high-priority" | "/dashboard/settings";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -50,7 +59,7 @@ type RouteFiles = {
   };
   "routes/dashboard.tsx": {
     id: "routes/dashboard";
-    page: "/dashboard" | "/dashboard/tasks" | "/dashboard/settings";
+    page: "/dashboard" | "/dashboard/tasks" | "/dashboard/tasks-completed" | "/dashboard/tasks-pending" | "/dashboard/tasks-high-priority" | "/dashboard/settings";
   };
   "routes/dashboard-home.tsx": {
     id: "routes/dashboard-home";
@@ -59,6 +68,18 @@ type RouteFiles = {
   "routes/tasks.tsx": {
     id: "routes/tasks";
     page: "/dashboard/tasks";
+  };
+  "routes/tasks-completed.tsx": {
+    id: "routes/tasks-completed";
+    page: "/dashboard/tasks-completed";
+  };
+  "routes/tasks-pending.tsx": {
+    id: "routes/tasks-pending";
+    page: "/dashboard/tasks-pending";
+  };
+  "routes/tasks-high-priority.tsx": {
+    id: "routes/tasks-high-priority";
+    page: "/dashboard/tasks-high-priority";
   };
   "routes/settings.tsx": {
     id: "routes/settings";
@@ -74,5 +95,8 @@ type RouteModules = {
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
   "routes/dashboard-home": typeof import("./app/routes/dashboard-home.tsx");
   "routes/tasks": typeof import("./app/routes/tasks.tsx");
+  "routes/tasks-completed": typeof import("./app/routes/tasks-completed.tsx");
+  "routes/tasks-pending": typeof import("./app/routes/tasks-pending.tsx");
+  "routes/tasks-high-priority": typeof import("./app/routes/tasks-high-priority.tsx");
   "routes/settings": typeof import("./app/routes/settings.tsx");
 };

@@ -19,31 +19,36 @@ export default function Statistics() {
         />
       </Link>
 
-      <StatCard
-        title="Completed"
-        statNumber={tasks.reduce(
-          (count, task) => count + (task.status === "Completed" ? 1 : 0),
-          0,
-        )}
-        imageURL={completedIcon}
-      />
-
-      <StatCard
-        title="Pending"
-        statNumber={tasks.reduce(
-          (count, task) => count + (task.status === "Todo" ? 1 : 0),
-          0,
-        )}
-        imageURL={pendingIcon}
-      />
-      <StatCard
-        title="High Priority"
-        statNumber={tasks.reduce(
-          (count, task) => count + (task.priority === "High" ? 1 : 0),
-          0,
-        )}
-        imageURL={highPriorityIcon}
-      />
+      <Link to="/dashboard/tasks-completed">
+        <StatCard
+          title="Completed"
+          statNumber={tasks.reduce(
+            (count, task) => count + (task.status === "Completed" ? 1 : 0),
+            0,
+          )}
+          imageURL={completedIcon}
+        />
+      </Link>
+      <Link to="/dashboard/tasks-pending">
+        <StatCard
+          title="Pending"
+          statNumber={tasks.reduce(
+            (count, task) => count + (task.status === "Todo" ? 1 : 0),
+            0,
+          )}
+          imageURL={pendingIcon}
+        />
+      </Link>
+      <Link to="/dashboard/tasks-high-priority">
+        <StatCard
+          title="High Priority"
+          statNumber={tasks.reduce(
+            (count, task) => count + (task.priority === "High" ? 1 : 0),
+            0,
+          )}
+          imageURL={highPriorityIcon}
+        />
+      </Link>
     </section>
   );
 }

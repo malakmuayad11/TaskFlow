@@ -14,7 +14,13 @@ import { ThemeContext } from "~/context/ThemeContext";
 import { useToast } from "~/hooks/useToast";
 import Toast from "../shared/Toast";
 
-export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
+export default function TasksList({
+  initialTasks,
+  includeControlBar = false,
+}: {
+  initialTasks: Task[];
+  includeControlBar?: boolean;
+}) {
   const theme = useContext(ThemeContext).theme;
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -107,12 +113,14 @@ export default function TasksList({ initialTasks }: { initialTasks: Task[] }) {
         />
       ) : (
         <section>
-          <ControlBar
-            onSearch={handleSearch}
-            onFilterChange={handleFilterChange}
-            onAdd={handleAddTask}
-            onStartAdd={() => setIsAddingTask(true)}
-          />
+          {includeControlBar === true && (
+            <ControlBar
+              onSearch={handleSearch}
+              onFilterChange={handleFilterChange}
+              onAdd={handleAddTask}
+              onStartAdd={() => setIsAddingTask(true)}
+            />
+          )}
           <div
             className={`border ${
               theme === "Light"
