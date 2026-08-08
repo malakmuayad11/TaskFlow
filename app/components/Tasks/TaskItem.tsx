@@ -1,4 +1,4 @@
-import { useContext, type ReactElement } from "react";
+import { useContext, useState, type ReactElement } from "react";
 import type { TaskStatus, TaskPriority } from "../../types/Task";
 import Badge from "../shared/Badge";
 import { ThemeContext } from "~/context/ThemeContext";
@@ -28,6 +28,12 @@ export default function TaskItem({
         day: "2-digit",
       });
 
+  const [checked, setChecked] = useState(status === "Completed");
+
+  function handleCheckChange() {
+    setChecked(!checked);
+  }
+
   return (
     <tr
       className={`border-b ${
@@ -36,10 +42,27 @@ export default function TaskItem({
           : "border-b-border-color-dark"
       } w-full`}
     >
-      <td className="text-sm p-2">{title}</td>
+      <td className="text-sm p-2 flex items-center gap-2 mt-3">
+        <input
+          type="checkbox"
+          value={title}
+          checked={checked}
+          onChange={handleCheckChange}
+          className="accent-primary"
+        />
+        <label className={`${checked ? "line-through" : ""}`}>{title}</label>
+      </td>
       {status && (
         <td>
-          <Badge variant={status === "In Progress" ? "Progress" : status} />
+          <Badge
+            variant={
+              checked
+                ? "Completed"
+                : status === "In Progress"
+                  ? "Progress"
+                  : "Todo"
+            }
+          />
         </td>
       )}
       <td
