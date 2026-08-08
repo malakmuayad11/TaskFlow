@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { TasksContext } from "../context/TasksContext";
 import { useLoadTasks } from "~/hooks/useLoadTasks";
+import QuoteCard from "~/components/Quotes/QuoteCard";
 
 export default function Dashboard() {
   const userId = useContext(UserContext)?.user?.userId;
@@ -15,6 +16,7 @@ export default function Dashboard() {
   return (
     <div className="mt-2">
       <h2 className="text-3xl font-semibold">Dashboard</h2>
+      <QuoteCard />
       <Statistics />
       <TasksOverview />
       <RecentTasksCard />
