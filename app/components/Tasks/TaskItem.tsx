@@ -1,24 +1,31 @@
 import { useContext, useState, type ReactElement } from "react";
-import type { TaskStatus, TaskPriority } from "../../types/Task";
+import type { TaskStatus, TaskPriority, Task } from "../../types/Task";
 import Badge from "../shared/Badge";
 import { ThemeContext } from "~/context/ThemeContext";
+import { TasksContext } from "~/context/TasksContext";
+import { updateTask } from "~/services/indexedDB/taskService";
 
 interface TaskItemProps {
+  id: number;
   title: string;
   status?: TaskStatus;
   priority: TaskPriority;
   dueDate: Date;
+  enableCheck: boolean;
   additionalData?: ReactElement;
 }
 
 export default function TaskItem({
+  id,
   title,
   status,
   priority,
   dueDate,
+  enableCheck = true,
   additionalData,
 }: TaskItemProps) {
   const theme = useContext(ThemeContext).theme;
+  const tasks = useContext(TasksContext).tasks;
   const parsedDueDate = dueDate instanceof Date ? dueDate : new Date(dueDate);
   const formattedDate = Number.isNaN(parsedDueDate.getTime())
     ? "Invalid date"
@@ -30,8 +37,22 @@ export default function TaskItem({
 
   const [checked, setChecked] = useState(status === "Completed");
 
-  function handleCheckChange() {
-    setChecked(!checked);
+  async function handleCheckChange() {
+    if (enableCheck === false) return;
+
+    const nextChecked = !checked;
+    setChecked(nextChecked);
+    const task = tasks.find((t) => t.taskId === id);
+    if (task) {
+      await updateTask({
+        taskId: id,
+        title: title,
+        status: nextChecked ? "Completed" : "Todo",
+        priority: priority,
+        dueDate: dueDate,
+        userId: task.userId,
+      });
+    }
   }
 
   return (

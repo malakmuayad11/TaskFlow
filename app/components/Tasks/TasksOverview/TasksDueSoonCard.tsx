@@ -3,12 +3,9 @@ import type { Task } from "../../../types/Task";
 import TaskItem from "../TaskItem";
 import { ThemeContext } from "~/context/ThemeContext";
 import { paginateArray } from "~/services/paginationService";
-const now = Date.now();
 
 export default function TasksDueSoonCard({ tasks }: { tasks: Task[] }) {
   const theme = useContext(ThemeContext).theme;
-
-  const now = new Date();
 
   const dueSoonTasks = paginateArray(
     tasks.filter((task) => {
@@ -44,7 +41,12 @@ export default function TasksDueSoonCard({ tasks }: { tasks: Task[] }) {
         <table className="w-full">
           <tbody>
             {dueSoonTasks.map((task) => (
-              <TaskItem {...task} key={task.taskId} />
+              <TaskItem
+                enableCheck={false}
+                id={task.taskId}
+                {...task}
+                key={task.taskId}
+              />
             ))}
           </tbody>
         </table>

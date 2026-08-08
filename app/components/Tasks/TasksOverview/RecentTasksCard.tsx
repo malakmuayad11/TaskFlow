@@ -49,7 +49,12 @@ export default function RecentTasksCard() {
           </thead>
           <tbody>
             {getRecentTasks().map((task) => (
-              <TaskItem key={task.taskId} {...task} />
+              <TaskItem
+                enableCheck={false}
+                id={task.taskId}
+                key={task.taskId}
+                {...task}
+              />
             ))}
           </tbody>
         </table>

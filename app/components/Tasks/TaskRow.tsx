@@ -8,21 +8,25 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "~/context/ThemeContext";
 import ConfirmationDialog from "../settings/ConfirmationDialog";
 interface TaskRowProps {
+  id: number;
   title: string;
   status: TaskStatus;
   priority: TaskPriority;
   dueDate: Date;
   onEdit: () => void;
   onDelete: () => void;
+  enableCheck: boolean;
 }
 
 export default function TaskRow({
+  id,
   title,
   status,
   priority,
   dueDate,
   onEdit,
   onDelete,
+  enableCheck,
 }: TaskRowProps) {
   const theme = useContext(ThemeContext).theme;
   const [isDeleting, setIsDeleting] = useState(false);
@@ -43,6 +47,8 @@ export default function TaskRow({
     </tr>
   ) : (
     <TaskItem
+      enableCheck={enableCheck}
+      id={id}
       title={title}
       status={status}
       priority={priority}

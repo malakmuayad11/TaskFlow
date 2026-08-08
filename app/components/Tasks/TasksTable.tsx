@@ -7,12 +7,14 @@ type TasksTableProps = {
   tasks: Task[];
   onDelete: (id: number) => void;
   onEdit: (task: Task) => void;
+  enableCheck: boolean;
 };
 
 export default function TasksTable({
   tasks,
   onDelete,
   onEdit,
+  enableCheck,
 }: TasksTableProps) {
   const theme = useContext(ThemeContext).theme;
 
@@ -51,7 +53,9 @@ export default function TasksTable({
           ) : (
             tasks.map((task) => (
               <TaskRow
+                enableCheck={enableCheck}
                 key={task.taskId}
+                id={task.taskId}
                 {...task}
                 onEdit={() => onEdit(task)}
                 onDelete={() => onDelete(task.taskId)}
